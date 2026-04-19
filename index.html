@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>3K - Gaming Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00f5ff;
+    --pink: #ff2d78;
+    --gold: #ffd700;
+    --deep: #050a1a;
+    --card-bg: rgba(0,245,255,0.04);
+    --border: rgba(0,245,255,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { background:var(--deep); color:#e0f0ff; font-family:'Rajdhani',sans-serif; overflow-x:hidden; cursor:none; -webkit-text-size-adjust:100%; }
+
+  .cursor { width:18px;height:18px;border:2px solid var(--cyan);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen; }
+  .cursor-dot { width:5px;height:5px;background:var(--cyan);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%); }
+
+  .stars { position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden; }
+  .star { position:absolute;background:white;border-radius:50%;animation:twinkle var(--d) infinite alternate; }
+  @keyframes twinkle { 0%{opacity:0.1;transform:scale(1)}100%{opacity:0.8;transform:scale(1.3)} }
+
+  .grid-overlay { position:fixed;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(0,245,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,0.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0; }
+
+  .orb { position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;opacity:0.13;animation:orb-float 8s ease-in-out infinite alternate; }
+  .orb-1 { width:400px;height:400px;background:var(--cyan);top:-100px;left:-100px; }
+  .orb-2 { width:350px;height:350px;background:var(--pink);bottom:-50px;right:-50px;animation-delay:-4s; }
+  .orb-3 { width:250px;height:250px;background:var(--gold);top:50%;left:50%;animation-delay:-2s; }
+  @keyframes orb-float { 0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,30px) scale(1.1)} }
+
+  .container { position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 20px; }
+
+  /* HERO */
+  .hero { min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:60px 20px;gap:28px; }
+  .avatar-wrapper { position:relative;width:160px;height:160px; }
+  .avatar-ring { position:absolute;inset:-8px;border-radius:50%;background:conic-gradient(var(--cyan),var(--pink),var(--gold),var(--cyan));animation:spin 4s linear infinite;z-index:0; }
+  .avatar-ring-inner { position:absolute;inset:3px;background:var(--deep);border-radius:50%;z-index:1; }
+  .avatar-face { position:absolute;inset:10px;border-radius:50%;overflow:hidden;z-index:2;border:3px solid rgba(0,245,255,0.3); }
+  .avatar-face img { width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1); }
+  .avatar-chibi { position:absolute;bottom:-20px;right:-25px;width:80px;height:80px;z-index:10;border-radius:50%;overflow:hidden;border:2px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.4);animation:chibi-bounce 2s ease-in-out infinite; }
+  .avatar-chibi img { width:100%;height:100%;object-fit:cover; }
+  @keyframes chibi-bounce { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  .hero-name { font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,8vw,5rem);font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--pink),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;line-height:1;animation:name-glow 3s ease-in-out infinite alternate; }
+  @keyframes name-glow { 0%{filter:drop-shadow(0 0 20px rgba(0,245,255,0.5))}100%{filter:drop-shadow(0 0 40px rgba(255,45,120,0.5))} }
+  .hero-subtitle { font-size:1.1rem;color:rgba(224,240,255,0.6);letter-spacing:0.3em;text-transform:uppercase; }
+  .tagline { font-size:1.2rem;color:var(--cyan);font-weight:600; }
+
+  /* Social */
+  .social-grid { display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:10px; }
+  .social-btn { display:flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid var(--border);border-radius:40px;background:var(--card-bg);color:#e0f0ff;text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:600;letter-spacing:0.05em;transition:all 0.3s;backdrop-filter:blur(10px);position:relative;overflow:hidden; }
+  .social-btn::before { content:'';position:absolute;inset:0;background:var(--btn-glow,rgba(0,245,255,0.1));opacity:0;transition:opacity 0.3s; }
+  .social-btn:hover::before { opacity:1; }
+  .social-btn:hover { border-color:var(--btn-color,var(--cyan));box-shadow:0 0 20px var(--btn-glow,rgba(0,245,255,0.3));transform:translateY(-2px);color:var(--btn-color,var(--cyan)); }
+  .social-btn svg { flex-shrink:0; }
+  .btn-fb  { --btn-color:#1877f2;--btn-glow:rgba(24,119,242,0.3); }
+  .btn-page{ --btn-color:#1877f2;--btn-glow:rgba(24,119,242,0.25); }
+  .btn-yt  { --btn-color:#ff0000;--btn-glow:rgba(255,0,0,0.3); }
+  .btn-dc  { --btn-color:#5865f2;--btn-glow:rgba(88,101,242,0.3); }
+  .btn-tt  { --btn-color:#ff0050;--btn-glow:rgba(255,0,80,0.3); }
+
+  /* Sections */
+  section { padding:70px 0; }
+  .section-header { text-align:center;margin-bottom:45px; }
+  .section-tag { font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px; }
+  .section-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;background:linear-gradient(135deg,#fff 40%,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .section-line { width:60px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--pink));margin:15px auto 0;border-radius:2px; }
+
+  /* Donate */
+  .donate-card { background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,45,120,0.05));border:1px solid rgba(255,215,0,0.3);border-radius:20px;padding:35px;backdrop-filter:blur(20px);position:relative;overflow:hidden; }
+  .donate-card::before { content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(255,215,0,0.05) 0%,transparent 60%);animation:pulse-glow 4s ease-in-out infinite; }
+  @keyframes pulse-glow { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.6} }
+  .donate-inner { display:flex;align-items:center;justify-content:center;gap:32px;position:relative; }
+  .donate-text-col { text-align:center;flex:1; }
+  .donate-icon { font-size:2.5rem;margin-bottom:12px;display:block; }
+  .donate-title { font-family:'Orbitron',sans-serif;font-size:1.3rem;color:var(--gold);margin-bottom:8px;position:relative; }
+  .donate-desc { color:rgba(224,240,255,0.7);font-size:0.95rem;margin-bottom:20px;position:relative; }
+  .donate-btn { display:inline-flex;align-items:center;gap:10px;padding:14px 35px;background:linear-gradient(135deg,var(--gold),#ffaa00);color:#0a0500;text-decoration:none;border-radius:40px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s ease;position:relative;box-shadow:0 0 30px rgba(255,215,0,0.3);border:none;cursor:pointer; }
+  .donate-btn:hover { transform:scale(1.05);box-shadow:0 0 50px rgba(255,215,0,0.5); }
+  .donate-divider { width:1px;height:120px;background:linear-gradient(180deg,transparent,rgba(255,215,0,0.35),transparent);flex-shrink:0; }
+  .donate-qr-col { display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0; }
+  .donate-qr-wrap { width:130px;height:130px;border-radius:14px;overflow:hidden;border:2px solid rgba(255,215,0,0.45);box-shadow:0 0 20px rgba(255,215,0,0.2);background:white;padding:6px; }
+  .donate-qr-wrap img { width:100%;height:100%;object-fit:cover;border-radius:8px; }
+  .donate-qr-label { font-size:0.72rem;color:rgba(255,215,0,0.75);letter-spacing:0.1em;text-transform:uppercase;font-weight:700; }
+
+  /* Two col layout */
+  .two-col { display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start; }
+  @media(max-width:768px){ .two-col{grid-template-columns:1fr;} }
+
+  /* Cards */
+  .price-card { background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:25px;backdrop-filter:blur(20px);position:relative;overflow:hidden;transition:all 0.3s; }
+  .price-card:hover { border-color:rgba(0,245,255,0.4);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,245,255,0.08); }
+  .price-card::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--pink)); }
+  .price-card-title { font-family:'Orbitron',sans-serif;font-size:1rem;color:var(--cyan);margin-bottom:20px;display:flex;align-items:center;gap:8px; }
+
+  .gallery-card { background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:25px;backdrop-filter:blur(20px);position:relative;overflow:hidden; }
+  .gallery-card::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--pink),var(--gold)); }
+  .gallery-title { font-family:'Orbitron',sans-serif;font-size:1rem;color:var(--pink);margin-bottom:18px;display:flex;align-items:center;gap:8px; }
+  .gallery-grid { display:grid;grid-template-columns:1fr;gap:10px; }
+  .gallery-img-wrap { border-radius:12px;overflow:hidden;border:1px solid rgba(255,45,120,0.2);aspect-ratio:16/9;position:relative;cursor:pointer; }
+  .gallery-img-wrap img { width:100%;height:100%;object-fit:cover;transition:transform 0.4s; }
+  .gallery-img-wrap:hover img { transform:scale(1.07); }
+  .gallery-slot { border-radius:12px;border:2px dashed rgba(255,45,120,0.22);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:rgba(224,240,255,0.25);font-size:0.78rem;text-align:center;cursor:pointer;overflow:hidden;position:relative; }
+  .gallery-slot:hover { border-color:rgba(255,45,120,0.5);background:rgba(255,45,120,0.04); }
+  .gallery-slot input[type=file] { position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%; }
+  .gallery-slot-icon { font-size:1.7rem;opacity:0.35; }
+
+  /* Wuwa items — only lunite + price, link to FB */
+  .wuwa-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px; }
+  .wuwa-item { border:1px solid rgba(0,245,255,0.15);border-radius:12px;padding:14px 10px;text-align:center;background:rgba(0,245,255,0.03);transition:all 0.3s;cursor:pointer;text-decoration:none;display:block; }
+  .wuwa-item:hover { border-color:var(--cyan);box-shadow:0 0 20px rgba(0,245,255,0.15);transform:translateY(-3px); }
+  .wuwa-item.featured { border-color:rgba(255,45,120,0.4);background:rgba(255,45,120,0.05); }
+  .wuwa-item.featured:hover { border-color:var(--pink);box-shadow:0 0 20px rgba(255,45,120,0.2); }
+  .wuwa-badge { font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(224,240,255,0.55);margin-bottom:8px; }
+  .wuwa-price { font-family:'Orbitron',sans-serif;font-size:1.25rem;font-weight:900;color:var(--gold);line-height:1; }
+
+  /* Skin */
+  .skin-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px; }
+  @media(max-width:600px){ .skin-grid{grid-template-columns:1fr 1fr;} }
+  .skin-item { border:1px solid rgba(255,215,0,0.2);border-radius:12px;overflow:hidden;background:rgba(255,215,0,0.03);transition:all 0.3s;cursor:pointer;text-decoration:none;display:block; }
+  .skin-item:hover { border-color:var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.2);transform:translateY(-3px); }
+  .skin-img-wrap { aspect-ratio:2/3;overflow:hidden;position:relative; }
+  .skin-img-wrap img { width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.4s; }
+  .skin-item:hover .skin-img-wrap img { transform:scale(1.06); }
+  .skin-slot-ph { aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;color:rgba(224,240,255,0.22);font-size:0.75rem;text-align:center;background:rgba(255,255,255,0.02); }
+  .skin-slot-ph-icon { font-size:2rem;opacity:0.3; }
+  .skin-info { padding:10px;border-top:1px solid rgba(255,215,0,0.1); }
+  .skin-name { font-size:0.8rem;color:rgba(224,240,255,0.75);margin-bottom:4px; }
+  .skin-price { font-family:'Orbitron',sans-serif;font-size:0.88rem;font-weight:700;color:var(--gold); }
+
+  /* Feedback section */
+  .feedback-section { padding:70px 0; }
+  .fb-header { text-align:center;margin-bottom:40px; }
+  .fb-badge { display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(0,245,255,0.08);border:1px solid rgba(0,245,255,0.25);border-radius:30px;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px; }
+  .fb-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.3rem,3.5vw,1.9rem);font-weight:700;background:linear-gradient(135deg,#fff 30%,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .fb-subtitle { color:rgba(224,240,255,0.5);font-size:0.95rem;margin-top:8px; }
+  .fb-line { width:60px;height:2px;background:linear-gradient(90deg,var(--gold),var(--pink));margin:14px auto 0;border-radius:2px; }
+  .fb-stats { display:flex;justify-content:center;gap:40px;margin-bottom:40px;flex-wrap:wrap; }
+  .fb-stat { text-align:center; }
+  .fb-stat-num { font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1; }
+  .fb-stat-label { font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(224,240,255,0.4);margin-top:4px; }
+  /* Scroll marquee track */
+  .fb-track-wrap { overflow:hidden;position:relative;padding:10px 0; }
+  .fb-track-wrap::before,.fb-track-wrap::after { content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none; }
+  .fb-track-wrap::before { left:0;background:linear-gradient(90deg,var(--deep),transparent); }
+  .fb-track-wrap::after { right:0;background:linear-gradient(-90deg,var(--deep),transparent); }
+  .fb-track { display:flex;gap:16px;width:max-content;animation:fb-scroll 18s linear infinite; }
+  .fb-track:hover { animation-play-state:paused; }
+  @keyframes fb-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .fb-card { width:200px;flex-shrink:0;border:1px solid rgba(255,215,0,0.2);border-radius:16px;overflow:hidden;background:rgba(255,215,0,0.03);cursor:pointer;transition:all 0.3s;position:relative; }
+  .fb-card:hover { border-color:var(--gold);box-shadow:0 0 25px rgba(255,215,0,0.2);transform:translateY(-4px); }
+  .fb-card-img { aspect-ratio:3/4;overflow:hidden; }
+  .fb-card-img img { width:100%;height:100%;object-fit:cover;transition:transform 0.4s; }
+  .fb-card:hover .fb-card-img img { transform:scale(1.06); }
+  .fb-card-slot { aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;background:rgba(255,255,255,0.02);color:rgba(224,240,255,0.2);font-size:0.75rem; }
+  .fb-card-slot-icon { font-size:1.8rem;opacity:0.3; }
+  .fb-card-body { padding:10px 12px;border-top:1px solid rgba(255,215,0,0.1); }
+  .fb-card-tag { font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px; }
+  .fb-card-name { font-size:0.82rem;color:rgba(224,240,255,0.8);font-weight:600; }
+  .fb-verified { position:absolute;top:8px;right:8px;background:rgba(0,245,255,0.15);border:1px solid rgba(0,245,255,0.3);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem; }
+
+  /* Price items */
+  .price-item { display:flex;align-items:center;justify-content:space-between;padding:9px 13px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);border-radius:9px;transition:all 0.2s; }
+  .price-item:hover { background:rgba(0,245,255,0.05);border-color:rgba(0,245,255,0.2); }
+  .price-item-name { font-size:0.85rem;color:rgba(224,240,255,0.8); }
+  .price-item-value { font-family:'Orbitron',sans-serif;font-size:0.82rem;font-weight:700;color:var(--gold);margin-left:8px;white-space:nowrap; }
+
+  /* Map cols */
+  .map-cols { display:grid;grid-template-columns:1fr 1fr;gap:20px; }
+  @media(max-width:600px){ .map-cols{grid-template-columns:1fr;} }
+
+  /* Extra */
+  .extra-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px; }
+  .extra-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:13px;padding:18px;transition:all 0.3s; }
+  .extra-card:hover { border-color:rgba(0,245,255,0.25);background:rgba(0,245,255,0.04); }
+  .extra-cat { font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;font-weight:700; }
+  .extra-list { list-style:none; }
+  .extra-list li { display:flex;justify-content:space-between;font-size:0.88rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(224,240,255,0.8); }
+  .extra-list li:last-child { border-bottom:none; }
+  .extra-list li span:last-child { font-family:'Orbitron',sans-serif;font-size:0.78rem;font-weight:700;color:var(--gold); }
+
+  /* Tabs */
+  .tabs { display:flex;justify-content:center;gap:10px;margin-bottom:28px;flex-wrap:wrap; }
+  .tab-btn { padding:8px 20px;border:1px solid var(--border);background:transparent;color:rgba(224,240,255,0.6);border-radius:30px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:0.92rem;font-weight:600;letter-spacing:0.05em;transition:all 0.3s; }
+  .tab-btn.active,.tab-btn:hover { border-color:var(--cyan);color:var(--cyan);background:rgba(0,245,255,0.08); }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+
+  /* Reveal */
+  .reveal { opacity:0;transform:translateY(28px);transition:all 0.7s ease; }
+  .reveal.visible { opacity:1;transform:translateY(0); }
+
+  /* Lightbox */
+  .lightbox { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;align-items:center;justify-content:center; }
+  .lightbox.open { display:flex; }
+  .lightbox img { max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 0 60px rgba(0,245,255,0.2); }
+  .lightbox-close { position:absolute;top:20px;right:28px;font-size:2.5rem;color:white;cursor:pointer;line-height:1; }
+
+  /* QR Lightbox */
+  .qr-lightbox { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:10001;align-items:center;justify-content:center;flex-direction:column;gap:20px; }
+  .qr-lightbox.open { display:flex; }
+  .qr-lightbox-close { position:absolute;top:18px;right:24px;font-size:2.2rem;color:rgba(255,255,255,0.8);cursor:pointer;line-height:1;z-index:2; }
+  .qr-lightbox-title { font-family:'Orbitron',sans-serif;font-size:0.9rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase; }
+  .qr-zoom-wrap { position:relative;overflow:hidden;border-radius:18px;border:2px solid rgba(255,215,0,0.4);box-shadow:0 0 40px rgba(255,215,0,0.25);background:white;padding:10px;transition:none; }
+  .qr-zoom-wrap img { display:block;width:280px;height:280px;object-fit:contain;border-radius:10px;transform-origin:center center;transition:transform 0.2s ease;user-select:none; }
+  .qr-controls { display:flex;align-items:center;gap:14px; }
+  .qr-btn { width:42px;height:42px;border-radius:50%;background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.4);color:var(--gold);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:monospace;line-height:1; }
+  .qr-btn:hover { background:rgba(255,215,0,0.3);transform:scale(1.1); }
+  .qr-zoom-hint { font-size:0.75rem;color:rgba(224,240,255,0.4);letter-spacing:0.08em; }
+  .qr-zoom-level { font-family:'Orbitron',sans-serif;font-size:0.82rem;color:var(--gold);min-width:44px;text-align:center; }
+  /* Cursor zoom hint on QR wrap */
+  .donate-qr-wrap { cursor:zoom-in; }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media(max-width:768px){
+    body { cursor:auto; }
+    .cursor,.cursor-dot { display:none; }
+    .container { padding:0 12px; }
+    section { padding:40px 0; }
+
+    /* Hero */
+    .hero { padding:44px 12px 36px;gap:16px;min-height:100svh; }
+    .hero-video-bg video { object-position:60% center; }
+    .hero-video-overlay { background:linear-gradient(to bottom,rgba(5,10,26,0.45) 0%,rgba(5,10,26,0.2) 40%,rgba(5,10,26,0.75) 85%,var(--deep) 100%); }
+    .hero-video-overlay-sides { background:linear-gradient(to right,rgba(5,10,26,0.7) 0%,transparent 30%,transparent 70%,rgba(5,10,26,0.7) 100%); }
+
+    /* Avatar */
+    .avatar-wrapper { width:110px;height:110px; }
+    .avatar-chibi { width:55px;height:55px;bottom:-14px;right:-16px; }
+    .hero-name { font-size:clamp(2.2rem,14vw,4rem); }
+    .hero-subtitle { font-size:0.85rem;letter-spacing:0.18em; }
+    .tagline { font-size:1rem;padding:0 8px;text-align:center;line-height:1.6; }
+
+    /* Social buttons — 2 per row */
+    .social-grid { gap:8px;display:grid;grid-template-columns:1fr 1fr; }
+    .social-btn { padding:10px 12px;font-size:0.82rem;justify-content:center;border-radius:14px; }
+
+    /* Vid mute btn */
+    .vid-mute-btn { top:12px;left:12px;width:32px;height:32px;font-size:0.85rem; }
+
+    /* Tabs */
+    .tabs { gap:6px;display:grid;grid-template-columns:1fr 1fr; }
+    .tab-btn { padding:9px 10px;font-size:0.78rem;text-align:center;border-radius:12px; }
+
+    /* Cards & layout */
+    .two-col { grid-template-columns:1fr; }
+    .map-cols { grid-template-columns:1fr; }
+    .price-card,.gallery-card { padding:16px; }
+    .wuwa-grid { grid-template-columns:repeat(3,1fr);gap:8px; }
+    .wuwa-item { padding:10px 6px; }
+    .wuwa-badge { font-size:0.6rem; }
+    .wuwa-price { font-size:1.05rem; }
+    .gallery-grid { gap:8px; }
+    .skin-grid { grid-template-columns:1fr 1fr; }
+
+    /* Feedback */
+    .fb-stats { gap:18px; }
+    .fb-stat-num { font-size:1.5rem; }
+    .extra-grid { grid-template-columns:1fr 1fr; }
+
+    /* Donate */
+    .donate-card { padding:22px 16px; }
+    .donate-inner { flex-direction:column;gap:16px; }
+    .donate-divider { width:60%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.35),transparent); }
+    .donate-qr-col { flex-direction:row;gap:16px;align-items:center;justify-content:center; }
+    .donate-qr-wrap { width:90px;height:90px; }
+    .donate-btn { padding:11px 24px;font-size:0.82rem; }
+
+    /* Section headers */
+    .section-title { font-size:clamp(1.2rem,5vw,1.6rem); }
+    .section-tag { font-size:0.7rem; }
+
+    /* Price items */
+    .price-item { padding:8px 10px; }
+    .price-item-name { font-size:0.8rem; }
+    .price-item-value { font-size:0.76rem; }
+
+    /* Footer */
+    footer { padding:28px 12px;font-size:0.78rem; }
+  }
+
+  @media(max-width:480px){
+    /* Social: 2 col kept but tighter */
+    .social-btn { padding:9px 8px;font-size:0.78rem;gap:6px; }
+    .social-btn svg { width:15px;height:15px; }
+
+    /* Tabs: stacked 1 col on very small */
+    .tabs { grid-template-columns:1fr; }
+    .tab-btn { width:100%;padding:10px 14px; }
+
+    .wuwa-grid { grid-template-columns:1fr 1fr; }
+    .extra-grid { grid-template-columns:1fr; }
+    .hero { gap:14px;padding:36px 10px 30px; }
+    .avatar-wrapper { width:96px;height:96px; }
+    .avatar-chibi { width:48px;height:48px;bottom:-12px;right:-14px; }
+    .tagline { font-size:0.88rem; }
+    .donate-title { font-size:1.1rem; }
+  }
+
+  /* Music player mobile — compact pill anchored to bottom */
+  @media(max-width:600px){
+    .music-player {
+      left:10px;bottom:10px;right:10px;
+      max-width:none;border-radius:16px;
+      padding:9px 12px 9px 10px;gap:10px;
+    }
+    .mp-icon { width:38px;height:38px;border-radius:8px; }
+    .mp-title { font-size:0.76rem; }
+    .mp-time { font-size:0.62rem;min-width:26px; }
+    .mp-vol { width:40px; }
+    .mp-btn { width:28px;height:28px; }
+    .mp-btn svg { width:13px;height:13px; }
+    .mp-info { max-width:none; }
+    #mpTitleWrap { max-width:none; }
+  }
+
+  /* Footer */
+  footer { padding:40px 20px;text-align:center;border-top:1px solid var(--border);color:rgba(224,240,255,0.3);font-size:0.85rem;letter-spacing:0.1em; }
+  footer span { color:var(--cyan); }
+
+  /* ── VIDEO BACKGROUND ── */
+  .hero-video-bg { position:absolute;inset:0;width:100%;height:100%;overflow:hidden;z-index:0;border-radius:0; }
+  .hero-video-bg video { width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0.55;filter:brightness(0.7) saturate(1.2); }
+  .hero-video-overlay { position:absolute;inset:0;background:linear-gradient(to bottom, rgba(5,10,26,0.35) 0%, rgba(5,10,26,0.15) 40%, rgba(5,10,26,0.65) 85%, var(--deep) 100%);z-index:1; }
+  .hero-video-overlay-sides { position:absolute;inset:0;background:linear-gradient(to right, rgba(5,10,26,0.6) 0%, transparent 25%, transparent 75%, rgba(5,10,26,0.6) 100%);z-index:1; }
+  .hero { position:relative;overflow:hidden; }
+  .hero > *:not(.hero-video-bg):not(.hero-video-overlay):not(.hero-video-overlay-sides) { position:relative;z-index:2; }
+
+  /* ── MUSIC PLAYER ── */
+  .music-player { position:fixed;bottom:22px;left:22px;z-index:5000;display:flex;align-items:center;gap:12px;
+    background:rgba(5,10,26,0.75);backdrop-filter:blur(18px) saturate(1.5);
+    border:1px solid rgba(0,245,255,0.25);border-radius:50px;
+    padding:10px 18px 10px 12px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,245,255,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition:all 0.3s ease;min-width:0;max-width:340px;
+    bottom:max(22px, calc(env(safe-area-inset-bottom) + 10px)); }
+  .music-player:hover { border-color:rgba(0,245,255,0.45);box-shadow:0 8px 50px rgba(0,245,255,0.15),0 0 0 1px rgba(0,245,255,0.15); }
+  .mp-icon { width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;box-shadow:0 0 12px rgba(0,245,255,0.3);border:1px solid rgba(0,245,255,0.25);animation:mp-spin 8s linear infinite;animation-play-state:paused; }
+  .mp-icon.playing { animation-play-state:running; }
+  .mp-icon img { width:100%;height:100%;object-fit:cover;display:block; }
+  @keyframes mp-spin { 0%{border-radius:10px}50%{border-radius:50%}100%{border-radius:10px} }
+  .mp-info { flex:1;min-width:0;overflow:hidden; }
+  .mp-title { font-size:0.82rem;font-weight:700;color:#e0f0ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Rajdhani',sans-serif;letter-spacing:0.03em; }
+  .mp-title-scroll { display:inline-block;white-space:nowrap; }
+  .mp-title-scroll.scrolling { animation:mp-text-scroll 10s linear infinite; }
+  @keyframes mp-text-scroll { 0%{transform:translateX(0)} 40%{transform:translateX(0)} 90%{transform:translateX(-60%)} 100%{transform:translateX(0)} }
+  .mp-bar-row { display:flex;align-items:center;gap:6px;margin-top:4px; }
+  .mp-time { font-size:0.68rem;color:rgba(0,245,255,0.7);font-family:'Orbitron',sans-serif;white-space:nowrap;min-width:30px; }
+  .mp-progress { flex:1;height:3px;background:rgba(255,255,255,0.12);border-radius:3px;cursor:pointer;position:relative;overflow:hidden; }
+  .mp-progress-fill { height:100%;background:linear-gradient(90deg,var(--cyan),var(--pink));border-radius:3px;width:0%;transition:width 0.3s linear; }
+  .mp-controls { display:flex;align-items:center;gap:6px;flex-shrink:0; }
+  .mp-btn { width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,0.07);color:#e0f0ff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0; }
+  .mp-btn:hover { background:rgba(0,245,255,0.18);color:var(--cyan); }
+  .mp-btn svg { width:14px;height:14px; }
+  .mp-vol { width:55px;height:3px;background:rgba(255,255,255,0.12);border-radius:3px;cursor:pointer;position:relative;overflow:hidden;flex-shrink:0; }
+  .mp-vol-fill { height:100%;background:rgba(0,245,255,0.6);border-radius:3px;width:70%; }
+
+  /* vid mute toggle */
+  .vid-mute-btn { position:absolute;top:18px;left:18px;z-index:10;width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,245,255,0.35);background:rgba(5,10,26,0.6);backdrop-filter:blur(10px);color:rgba(224,240,255,0.8);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-size:1rem; }
+  .vid-mute-btn:hover { background:rgba(0,245,255,0.15);border-color:var(--cyan); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="stars" id="stars"></div>
+<div class="grid-overlay"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- QR Lightbox -->
+<div class="qr-lightbox" id="qrLightbox">
+  <span class="qr-lightbox-close" onclick="closeQrLightbox()">✕</span>
+  <div class="qr-lightbox-title">📱 Quét mã QR để ủng hộ 3K</div>
+  <div class="qr-zoom-wrap" id="qrZoomWrap">
+    <img id="qrLightboxImg" src="qr.png" alt="QR Donate 3K" draggable="false">
+  </div>
+  <div class="qr-controls">
+    <button class="qr-btn" onclick="qrZoom(-0.25)" title="Thu nhỏ">−</button>
+    <div class="qr-zoom-level" id="qrZoomLevel">100%</div>
+    <button class="qr-btn" onclick="qrZoom(+0.25)" title="Phóng to">+</button>
+    <button class="qr-btn" onclick="qrReset()" title="Reset" style="font-size:1rem;">↺</button>
+  </div>
+  <div class="qr-zoom-hint">Cuộn chuột hoặc bấm +/− để zoom · ESC để đóng</div>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <!-- Video Background Cartethyia -->
+  <div class="hero-video-bg">
+    <video id="heroBgVideo" autoplay muted loop playsinline preload="auto">
+      <source src="cartethyia.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-video-overlay"></div>
+  <div class="hero-video-overlay-sides"></div>
+  <!-- Video mute toggle -->
+  <button class="vid-mute-btn" id="vidMuteBtn" title="Bật/Tắt tiếng video" onclick="toggleVidMute()">🔇</button>
+  <div class="avatar-wrapper">
+    <div class="avatar-ring"></div>
+    <div class="avatar-ring-inner"></div>
+    <div class="avatar-face">
+      <img src="3k.jpg" alt="3K">
+    </div>
+    <div class="avatar-chibi">
+      <img src="aicarte.png" alt="chibi">
+    </div>
+  </div>
+  <div>
+    <div class="hero-name">3K</div>
+    <div class="hero-subtitle">★ Gaming Services ★</div>
+  </div>
+  <div class="tagline">Nạp game · WUWA,GENSHIN,ZZZ,HSR ,PGR · Chạy map Và Sự Kiện· Hỗ trợ tận tâm 💙</div>
+  <div class="social-grid">
+    <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="social-btn btn-fb">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61579360471944" target="_blank" class="social-btn btn-page">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      Page
+    </a>
+    <a href="https://www.youtube.com/@3Kneh" target="_blank" class="social-btn btn-yt">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a href="https://discord.gg/q6vT3jFNKu" target="_blank" class="social-btn btn-dc">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#5865f2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.113 18.1.133 18.114a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      Discord
+    </a>
+    <a href="https://www.tiktok.com/@3k_neh" target="_blank" class="social-btn btn-tt">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+      TikTok
+    </a>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="container">
+
+  <!-- Donate -->
+  <div class="donate-card reveal" style="margin-bottom:32px;">
+    <div class="donate-inner">
+      <div class="donate-text-col">
+        <span class="donate-icon">💛</span>
+        <div class="donate-title">Ủng hộ cho 3K</div>
+        <div class="donate-desc">Mọi sự ủng hộ đều là động lực để 3K tiếp tục phát triển!</div>
+        <a href="https://wescan.vn/3K" target="_blank" class="donate-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Donate qua WeScan
+        </a>
+      </div>
+      <div class="donate-divider"></div>
+      <div class="donate-qr-col">
+        <!-- ĐỔI "qr.png" thành tên file ảnh QR của bạn -->
+        <div class="donate-qr-wrap" onclick="openQrLightbox()">
+          <img src="qrcode-Photoroom.png" alt="QR Donate 3K">
+        </div>
+        <div class="donate-qr-label">📱 Quét QR để ủng hộ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services section -->
+  <section class="reveal">
+    <div class="section-header">
+      <div class="section-tag">// services</div>
+      <div class="section-title">Dịch Vụ Của 3K</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('wuwa',this)">🎮 Nạp Wuthering Waves</button>
+      <button class="tab-btn" onclick="switchTab('skin',this)">👗 Skin Nhân Vật</button>
+      <button class="tab-btn" onclick="switchTab('map',this)">🗺️ Chạy Map Sự Kiện</button>
+      <button class="tab-btn" onclick="switchTab('extra',this)">⭐ Dịch Vụ Thêm</button>
+    </div>
+
+    <!-- ── Nạp WuWa ── -->
+    <div id="tab-wuwa" class="tab-content active">
+      <div class="two-col">
+        <!-- Gallery -->
+        <div class="gallery-card">
+          <div class="gallery-title">📸 Hình Ảnh Của 3K</div>
+          <div class="gallery-grid">
+            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (ảnh 1) -->
+            <div class="gallery-img-wrap" onclick="openLightbox(document.getElementById('galleryImg1').src)">
+              <img src="ac.png" alt="3K" id="galleryImg1">
+            </div>
+            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (ảnh 2) -->
+            <div class="gallery-img-wrap" onclick="openLightbox(document.getElementById('galleryImg2').src)">
+              <img src="THẺ THÁNG.png" alt="3K" id="galleryImg2">
+            </div>
+          </div>
+        </div>
+        <!-- Bảng giá nạp -->
+        <div class="price-card">
+          <div class="price-card-title">⚡ Bảng Giá Nạp Lunite</div>
+          <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.35);border-radius:10px;text-decoration:none;margin-bottom:14px;transition:all 0.3s;" onmouseover="this.style.background='rgba(24,119,242,0.2)'" onmouseout="this.style.background='rgba(24,119,242,0.1)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
+          </a>
+          <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 x2 Nếu bạn chưa nạp  Lunite lần đầu ở mức đó · Thanh toán qua chuyển khoản</div>
+          <div class="wuwa-grid">
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
+              <div class="wuwa-badge">Lunite × 60</div>
+              <div class="wuwa-price">25k</div>
+            </a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
+              <div class="wuwa-badge">Lunite × 300</div>
+              <div class="wuwa-price">115k</div>
+            </a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
+              <div class="wuwa-badge">Lunite × 980</div>
+              <div class="wuwa-price">350k</div>
+            </a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
+              <div class="wuwa-badge">Lunite × 1980</div>
+              <div class="wuwa-price">675k</div>
+            </a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured">
+              <div class="wuwa-badge">Lunite × 3280</div>
+              <div class="wuwa-price">1130k</div>
+            </a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured">
+              <div class="wuwa-badge">Lunite × 6480</div>
+              <div class="wuwa-price">2200k</div>
+            </a>
+          </div>
+          <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
+            <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">📦 Gói thêm</div>
+            <div class="wuwa-grid" style="grid-template-columns:1fr 1fr;">
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
+                <div class="wuwa-badge">Thẻ tháng</div>
+                <div class="wuwa-price">115k</div>
+              </a>
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
+                <div class="wuwa-badge">BPP Thường</div>
+                <div class="wuwa-price">225k</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Skin Nhân Vật ── -->
+    <div id="tab-skin" class="tab-content">
+      <div class="two-col">
+        <!-- Skin image slots - gallery style -->
+        <div class="gallery-card">
+          <div class="gallery-title">👗 Skin Nhân Vật</div>
+          <div style="color:rgba(224,240,255,0.4);font-size:0.8rem;margin-bottom:14px;">🖼️ Click skin để inbox đặt mua</div>
+          <div class="gallery-grid">
+            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (skin 1) -->
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:block;">
+              <div class="gallery-img-wrap">
+                <img src="skin.png" alt="Skin 1">
+              </div>
+            </a>
+            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (skin 2) -->
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:block;">
+              <div class="gallery-img-wrap">
+                <img src="ủng.png" alt="Skin 2">
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- Bảng giá skin -->
+        <div class="price-card">
+          <div class="price-card-title">💰 Bảng Giá Skin</div>
+          <div style="color:rgba(224,240,255,0.4);font-size:0.8rem;margin-bottom:14px;">✏️ Tự chỉnh sửa giá trong file HTML</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="price-item"><span class="price-item-name">jinhsi </span><span class="price-item-value">1130k</span></div>
+            <div class="price-item"><span class="price-item-name">Zani</span><span class="price-item-value">905k</span></div>
+            <div class="price-item"><span class="price-item-name">Carlotta</span><span class="price-item-value">900k</span></div>
+            <div class="price-item"><span class="price-item-name">Changli</span><span class="price-item-value">910k</span></div>
+            <div class="price-item"><span class="price-item-name">sanhua</span><span class="price-item-value">630k</span></div>
+          </div>
+          <div style="margin-top:14px;padding:12px;background:rgba(255,215,0,0.05);border-radius:10px;border:1px solid rgba(255,215,0,0.15);font-size:0.8rem;color:rgba(224,240,255,0.5);">
+            💬 Giá có thể thay đổi · Inbox để biết giá mới nhất
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Chạy Map ── -->
+    <div id="tab-map" class="tab-content">
+      <div class="map-cols">
+        <div class="price-card">
+          <div class="price-card-title">🌍 Chạy Map 1</div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div class="price-item"><span class="price-item-name">Gorges Of Spirits</span><span class="price-item-value">40k</span></div>
+            <div class="price-item"><span class="price-item-name">Jinzhou</span><span class="price-item-value">35k</span></div>
+            <div class="price-item"><span class="price-item-name">Central Plains</span><span class="price-item-value">70k</span></div>
+            <div class="price-item"><span class="price-item-name">Desorock Highlands</span><span class="price-item-value">70k</span></div>
+            <div class="price-item"><span class="price-item-name">Port City Of Guixu</span><span class="price-item-value">70k</span></div>
+            <div class="price-item"><span class="price-item-name">Dim Forest</span><span class="price-item-value">70k</span></div>
+            <div class="price-item"><span class="price-item-name">Wumming Bay</span><span class="price-item-value">45k</span></div>
+            <div class="price-item"><span class="price-item-name">Norfall Barrens</span><span class="price-item-value">40k</span></div>
+            <div class="price-item"><span class="price-item-name">Whining Aix's Mire</span><span class="price-item-value">75k</span></div>
+            <div class="price-item"><span class="price-item-name">Tiger's Maw Mine</span><span class="price-item-value">45k</span></div>
+            <div class="price-item"><span class="price-item-name">MT. Firmament</span><span class="price-item-value">90k</span></div>
+            <div class="price-item"><span class="price-item-name">Black Shores</span><span class="price-item-value">40k</span></div>
+            <div class="price-item"><span class="price-item-name">Tethys Deep</span><span class="price-item-value">45k</span></div>
+            <div style="color:var(--cyan);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;padding:10px 0 4px;">✦ Map 3.0</div>
+            <div class="price-item"><span class="price-item-name">Frostlands Transit Port</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Mount Gjallar</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Starblind Crashsite</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Upphaf Forest Ruins</span><span class="price-item-value">70k</span></div>
+            <div class="price-item"><span class="price-item-name">Tidelost Forest</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Etching Plains</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Startorch Academy</span><span class="price-item-value">15k</span></div>
+            <div class="price-item"><span class="price-item-name">Starward Riseway</span><span class="price-item-value">15k</span></div>
+            <div class="price-item"><span class="price-item-name">Fangspire Chasm</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Bjartr Woods</span><span class="price-item-value">40k</span></div>
+            <div class="price-item"><span class="price-item-name">Stagnant Run</span><span class="price-item-value">50k</span></div>
+            <div class="price-item"><span class="price-item-name">Rebirth Uplands</span><span class="price-item-value">50k</span></div>
+            <div class="price-item"><span class="price-item-name">Mawburrow Desert</span><span class="price-item-value">15k</span></div>
+            <div class="price-item"><span class="price-item-name">Giant's Gaze</span><span class="price-item-value">40k</span></div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-card-title">🌊 Chạy Map 2</div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div class="price-item"><span class="price-item-name">Ragunna City</span><span class="price-item-value">5k</span></div>
+            <div class="price-item"><span class="price-item-name">Averado Vault</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Penitent's End</span><span class="price-item-value">50k</span></div>
+            <div class="price-item"><span class="price-item-name">Hallowed Reach</span><span class="price-item-value">45k</span></div>
+            <div class="price-item"><span class="price-item-name">Whisperwind Haven</span><span class="price-item-value">50k</span></div>
+            <div class="price-item"><span class="price-item-name">Nimbus Sanctum</span><span class="price-item-value">60k</span></div>
+            <div class="price-item"><span class="price-item-name">Fagaceae Penisula</span><span class="price-item-value">50k</span></div>
+            <div class="price-item"><span class="price-item-name">Thessaleo Fells</span><span class="price-item-value">50k</span></div>
+            <div class="price-item"><span class="price-item-name">Riccioli Islands</span><span class="price-item-value">50k</span></div>
+            <div class="price-item"><span class="price-item-name">Vault Underground</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Avinoleum</span><span class="price-item-value">70k</span></div>
+            <div class="price-item"><span class="price-item-name">Beohr Waters</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Septimont</span><span class="price-item-value">55k</span></div>
+            <div class="price-item"><span class="price-item-name">Fabricatorium of Deep</span><span class="price-item-value">40k</span></div>
+            <div class="price-item"><span class="price-item-name">Sanguis Plateaus</span><span class="price-item-value">50k</span></div>
+          </div>
+          <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
+            <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">⭐ Daily đi kèm</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div class="price-item"><span class="price-item-name">1 ngày</span><span class="price-item-value">5k</span></div>
+              <div class="price-item"><span class="price-item-name">1 tuần</span><span class="price-item-value">25k</span></div>
+              <div class="price-item"><span class="price-item-name">1 tháng</span><span class="price-item-value">90k</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Extra ── -->
+    <div id="tab-extra" class="tab-content">
+      <div class="price-card">
+        <div class="price-card-title">✨ Dịch Vụ Bổ Sung</div>
+        <div class="extra-grid">
+          <div class="extra-card">
+            <div class="extra-cat">📅 Daily</div>
+            <ul class="extra-list">
+              <li><span>1 ngày</span><span>5k</span></li>
+              <li><span>1 tuần</span><span>25k</span></li>
+              <li><span>1 tháng</span><span>90k</span></li>
+            </ul>
+          </div>
+          <div class="extra-card">
+            <div class="extra-cat">📜 Quest</div>
+            <ul class="extra-list">
+              <li><span>Main quest</span><span>25k/1</span></li>
+              <li><span>Companion</span><span>25k/1</span></li>
+              <li><span>Exploration</span><span>25k/1</span></li>
+              <li><span>Side quest</span><span>5k/1</span></li>
+            </ul>
+          </div>
+          <div class="extra-card">
+            <div class="extra-cat">🎲 Roll / Gacha</div>
+            <ul class="extra-list">
+              <li><span>Roll đơn</span><span>5-6k/1</span></li>
+              <li><span>Roll x10</span><span>50-60k</span></li>
+              <li><span>Nhặt Sonance casket</span><span>IB</span></li>
+            </ul>
+          </div>
+          <div class="extra-card">
+            <div class="extra-cat">💬 Liên hệ</div>
+            <ul class="extra-list">
+              <li><span>Facebook</span><span style="color:var(--cyan);">Inbox</span></li>
+              <li><span>Discord</span><span style="color:var(--cyan);">Server</span></li>
+              <li><span>Tư vấn</span><span style="color:var(--cyan);">Miễn phí</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- ══ FEEDBACK UY TÍN ══ -->
+<div class="container">
+  <section class="feedback-section reveal">
+    <div class="fb-header">
+      <div class="fb-badge">⭐ Đã được xác nhận</div>
+      <div class="fb-title">Feedback Uy Tín Của 3K</div>
+      <div class="fb-subtitle">Hình ảnh thực từ những khách hàng đã sử dụng dịch vụ</div>
+      <div class="fb-line"></div>
+    </div>
+    <div class="fb-stats">
+      <div class="fb-stat">
+        <div class="fb-stat-num">100+</div>
+        <div class="fb-stat-label">Khách hàng</div>
+      </div>
+      <div class="fb-stat">
+        <div class="fb-stat-num">5★</div>
+        <div class="fb-stat-label">Đánh giá</div>
+      </div>
+      <div class="fb-stat">
+        <div class="fb-stat-num">0</div>
+        <div class="fb-stat-label">Khiếu nại</div>
+      </div>
+    </div>
+
+     <!-- Marquee track: 10 feedback slots (doubled for infinite loop) -->
+    <div class="fb-track-wrap">
+      <div class="fb-track" id="fbTrack">
+        <!-- ── 10 feedback cards ── đổi fb1.jpg, fb2.jpg... thành tên file ảnh của bạn -->
+        <div class="fb-card" onclick="openLightbox('fb1.jpg')"><div class="fb-card-img"><img src="nap1.jpg" alt="Khách hàng #1" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #1</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb2.jpg')"><div class="fb-card-img"><img src="nap2.jpg" alt="Khách hàng #2" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #2</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb3.jpg')"><div class="fb-card-img"><img src="nap3.jpg" alt="Khách hàng #3" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #3</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb4.jpg')"><div class="fb-card-img"><img src="nap4.jpg" alt="Khách hàng #4" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #4</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb5.jpg')"><div class="fb-card-img"><img src="nap5.jpg" alt="Khách hàng #5" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #5</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb6.jpg')"><div class="fb-card-img"><img src="nap6.jpg" alt="Khách hàng #6" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #6</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb7.jpg')"><div class="fb-card-img"><img src="nap7.jpg" alt="Khách hàng #7" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #7</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb8.jpg')"><div class="fb-card-img"><img src="nap8.jpg" alt="Khách hàng #8" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #8</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb9.jpg')"><div class="fb-card-img"><img src="nap9.jpg" alt="Khách hàng #9" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #9</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb10.jpg')"><div class="fb-card-img"><img src="nap10.png" alt="Khách hàng #10" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #10</div></div><div class="fb-verified">✓</div></div>
+        <!-- Duplicate set for seamless loop (tự động copy từ trên, không cần sửa) -->
+        <div class="fb-card" onclick="openLightbox('fb1.jpg')"><div class="fb-card-img"><img src="nap1.jpg" alt="Khách hàng #1" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #1</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb2.jpg')"><div class="fb-card-img"><img src="nap2.jpg" alt="Khách hàng #2" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #2</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb3.jpg')"><div class="fb-card-img"><img src="nap3.jpg" alt="Khách hàng #3" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #3</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb4.jpg')"><div class="fb-card-img"><img src="nap4.jpg" alt="Khách hàng #4" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #4</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb5.jpg')"><div class="fb-card-img"><img src="nap5.jpg" alt="Khách hàng #5" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #5</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb6.jpg')"><div class="fb-card-img"><img src="nap6.jpg" alt="Khách hàng #6" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #6</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb7.jpg')"><div class="fb-card-img"><img src="nap7.jpg" alt="Khách hàng #7" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #7</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb8.jpg')"><div class="fb-card-img"><img src="nap8.jpg" alt="Khách hàng #8" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #8</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb9.jpg')"><div class="fb-card-img"><img src="nap9.jpg" alt="Khách hàng #9" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #9</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('fb10.jpg')"><div class="fb-card-img"><img src="nap10.png" alt="Khách hàng #10" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #10</div></div><div class="fb-verified">✓</div></div>
+      </div>
+    </div>
+ 
+    </div>
+
+    <div style="text-align:center;margin-top:30px;">
+      <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border:1px solid rgba(24,119,242,0.4);border-radius:30px;text-decoration:none;color:#4fa3f7;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.95rem;letter-spacing:0.05em;transition:all 0.3s;background:rgba(24,119,242,0.07);" onmouseover="this.style.background='rgba(24,119,242,0.15)';this.style.borderColor='rgba(24,119,242,0.7)'" onmouseout="this.style.background='rgba(24,119,242,0.07)';this.style.borderColor='rgba(24,119,242,0.4)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#4fa3f7"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Xem thêm feedback trên Facebook →
+      </a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p>Made with 💙 by <span>3K</span> · Gaming Services Vietnam</p>
+  <p style="margin-top:8px;font-size:0.75rem;">© 2025 · Liên hệ Facebook hoặc Discord để đặt dịch vụ</p>
+</footer>
+
+<!-- ══ MUSIC PLAYER ══ -->
+<div class="music-player" id="musicPlayer">
+  <div class="mp-icon" id="mpIcon">
+    <img src="song-thumb.png" alt="cover">
+  </div>
+  <div class="mp-info">
+    <div class="mp-title" id="mpTitleWrap" style="overflow:hidden;max-width:160px;">
+      <span class="mp-title-scroll" id="mpTitleScroll">Người Yêu Bỏ Lỡ – Accusefive</span>
+    </div>
+    <div class="mp-bar-row">
+      <span class="mp-time" id="mpCurrent">0:00</span>
+      <div class="mp-progress" id="mpProgress"><div class="mp-progress-fill" id="mpFill"></div></div>
+      <span class="mp-time" id="mpDuration">0:00</span>
+    </div>
+  </div>
+  <div class="mp-controls">
+    <button class="mp-btn" id="mpPlayBtn" title="Play/Pause">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="mp-vol" id="mpVol" title="Âm lượng">
+      <div class="mp-vol-fill" id="mpVolFill"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Image upload helpers
+function loadGalleryImg(input, imgId, wrapId, phId) {
+  const file = input.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const img = document.getElementById(imgId);
+  const wrap = document.getElementById(wrapId);
+  img.src = url;
+  img.style.display = 'block';
+  if (phId) { const ph = document.getElementById(phId); if(ph) ph.style.display='none'; }
+  wrap.style.border = '';
+  wrap.style.background = '';
+}
+function loadSkinImg(input, imgId, phId) {
+  const file = input.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const img = document.getElementById(imgId);
+  img.src = url;
+  img.style.display = 'block';
+  const ph = document.getElementById(phId);
+  if (ph) ph.style.display = 'none';
+}
+function loadFbImg(input, num) {
+  const file = input.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const img = document.getElementById('fbImg'+num);
+  const ph  = document.getElementById('fbPH'+num);
+  const imgb= document.getElementById('fbImg'+num+'b');
+  const phb = document.getElementById('fbPH'+num+'b');
+  if(img){ img.src=url; img.style.display='block'; }
+  if(ph)  ph.style.display='none';
+  if(imgb){ imgb.src=url; imgb.style.display='block'; }
+  if(phb) phb.style.display='none';
+}
+
+// ── VIDEO MUTE ──
+function toggleVidMute() {
+  const v = document.getElementById('heroBgVideo');
+  const btn = document.getElementById('vidMuteBtn');
+  v.muted = !v.muted;
+  btn.textContent = v.muted ? '🔇' : '🔊';
+}
+
+// ── MUSIC PLAYER ──
+(function(){
+  const audio = new Audio('music.mp3');
+  audio.loop = true;
+  audio.volume = 0.7;
+  let playing = false;
+
+  const icon = document.getElementById('mpIcon');
+  const playBtn = document.getElementById('mpPlayBtn');
+  const fill = document.getElementById('mpFill');
+  const currentEl = document.getElementById('mpCurrent');
+  const durationEl = document.getElementById('mpDuration');
+  const volFill = document.getElementById('mpVolFill');
+  const titleScroll = document.getElementById('mpTitleScroll');
+  const progress = document.getElementById('mpProgress');
+  const volBar = document.getElementById('mpVol');
+
+  function fmt(s) {
+    if(isNaN(s)) return '0:00';
+    const m = Math.floor(s/60), sec = Math.floor(s%60);
+    return m+':'+(sec<10?'0':'')+sec;
+  }
+
+  function updatePlay(isPlaying) {
+    playing = isPlaying;
+    icon.classList.toggle('playing', isPlaying);
+    playBtn.innerHTML = isPlaying
+      ? '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>'
+      : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+  }
+
+  playBtn.addEventListener('click', ()=>{
+    if(playing){ audio.pause(); updatePlay(false); }
+    else { audio.play().then(()=>updatePlay(true)).catch(()=>{}); }
+  });
+
+  audio.addEventListener('timeupdate', ()=>{
+    if(!audio.duration) return;
+    const pct = (audio.currentTime/audio.duration)*100;
+    fill.style.width = pct+'%';
+    currentEl.textContent = fmt(audio.currentTime);
+  });
+  audio.addEventListener('loadedmetadata', ()=>{
+    durationEl.textContent = fmt(audio.duration);
+    // auto scroll if title overflows
+    setTimeout(()=>{
+      const parent = titleScroll.parentElement;
+      if(titleScroll.scrollWidth > parent.offsetWidth+4) titleScroll.classList.add('scrolling');
+    },500);
+  });
+
+  progress.addEventListener('click', e=>{
+    const rect = progress.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+  volBar.addEventListener('click', e=>{
+    const rect = volBar.getBoundingClientRect();
+    const pct = Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));
+    audio.volume = pct;
+    volFill.style.width = (pct*100)+'%';
+  });
+
+  // Tự phát khi vào trang (hoặc khi người dùng tương tác lần đầu)
+  function tryAutoplay() {
+    audio.play().then(()=>{ updatePlay(true); }).catch(()=>{});
+  }
+  audio.play().then(()=>updatePlay(true)).catch(()=>{
+    document.addEventListener('click', tryAutoplay, {once:true});
+    document.addEventListener('keydown', tryAutoplay, {once:true});
+    document.addEventListener('touchstart', tryAutoplay, {once:true});
+  });
+})();
+
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random()*2.5+0.5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*3+2}s;animation-delay:${Math.random()*5}s;`;
+  starsEl.appendChild(s);
+}
+// Cursor
+const cursor = document.getElementById('cursor');
+const dot = document.getElementById('cursorDot');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px';
+  dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px';
+});
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// Tabs
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+// Lightbox
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+// QR Lightbox with zoom
+let qrScale = 1;
+const QR_MIN = 0.5, QR_MAX = 4;
+
+function openQrLightbox() {
+  // sync src from donate card in case user changed it
+  const src = document.querySelector('.donate-qr-wrap img').src;
+  document.getElementById('qrLightboxImg').src = src;
+  qrReset();
+  document.getElementById('qrLightbox').classList.add('open');
+}
+function closeQrLightbox() {
+  document.getElementById('qrLightbox').classList.remove('open');
+}
+function qrZoom(delta) {
+  qrScale = Math.min(QR_MAX, Math.max(QR_MIN, qrScale + delta));
+  document.getElementById('qrLightboxImg').style.transform = `scale(${qrScale})`;
+  document.getElementById('qrZoomLevel').textContent = Math.round(qrScale * 100) + '%';
+}
+function qrReset() {
+  qrScale = 1;
+  document.getElementById('qrLightboxImg').style.transform = 'scale(1)';
+  document.getElementById('qrZoomLevel').textContent = '100%';
+}
+// Scroll wheel zoom on QR lightbox
+document.getElementById('qrZoomWrap').addEventListener('wheel', e => {
+  e.preventDefault();
+  qrZoom(e.deltaY < 0 ? 0.15 : -0.15);
+}, { passive: false });
+// Pinch to zoom (touch)
+let lastDist = 0;
+document.getElementById('qrZoomWrap').addEventListener('touchmove', e => {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.hypot(dx, dy);
+    if (lastDist > 0) qrZoom((dist - lastDist) * 0.008);
+    lastDist = dist;
+  }
+}, { passive: false });
+document.getElementById('qrZoomWrap').addEventListener('touchend', () => { lastDist = 0; });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeLightbox(); closeQrLightbox(); }
+  if (document.getElementById('qrLightbox').classList.contains('open')) {
+    if (e.key === '+' || e.key === '=') qrZoom(0.25);
+    if (e.key === '-') qrZoom(-0.25);
+    if (e.key === '0') qrReset();
+  }
+});
+</script>
+</body>
+</html>
