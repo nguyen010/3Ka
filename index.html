@@ -15,7 +15,8 @@
     --border: rgba(0,245,255,0.2);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  body { background:var(--deep); color:#e0f0ff; font-family:'Rajdhani',sans-serif; overflow-x:hidden; cursor:none; -webkit-text-size-adjust:100%; }
+  html { width: 100%; min-height: 100vh; }
+  body { width: 100%; min-height: 100vh; background:var(--deep); color:#e0f0ff; font-family:'Rajdhani',sans-serif; overflow-x:hidden; cursor:none; -webkit-text-size-adjust:100%; }
 
   .cursor { width:18px;height:18px;border:2px solid var(--cyan);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen; }
   .cursor-dot { width:5px;height:5px;background:var(--cyan);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%); }
@@ -34,8 +35,24 @@
 
   .container { position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 20px; }
 
-  /* HERO */
-  .hero { min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:60px 20px;gap:28px; }
+  /* HERO — FIX: width:100vw + margin negative để thoát khỏi mọi wrapper */
+  .hero {
+    position:relative;
+    width:100vw;
+    left:50%;
+    right:50%;
+    margin-left:-50vw;
+    margin-right:-50vw;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    padding:60px 20px;
+    gap:28px;
+    overflow:hidden;
+  }
   .avatar-wrapper { position:relative;width:160px;height:160px; }
   .avatar-ring { position:absolute;inset:-8px;border-radius:50%;background:conic-gradient(var(--cyan),var(--pink),var(--gold),var(--cyan));animation:spin 4s linear infinite;z-index:0; }
   .avatar-ring-inner { position:absolute;inset:3px;background:var(--deep);border-radius:50%;z-index:1; }
@@ -109,7 +126,7 @@
   .gallery-slot input[type=file] { position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%; }
   .gallery-slot-icon { font-size:1.7rem;opacity:0.35; }
 
-  /* Wuwa items — only lunite + price, link to FB */
+  /* Wuwa items */
   .wuwa-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px; }
   .wuwa-item { border:1px solid rgba(0,245,255,0.15);border-radius:12px;padding:14px 10px;text-align:center;background:rgba(0,245,255,0.03);transition:all 0.3s;cursor:pointer;text-decoration:none;display:block; }
   .wuwa-item:hover { border-color:var(--cyan);box-shadow:0 0 20px rgba(0,245,255,0.15);transform:translateY(-3px); }
@@ -143,7 +160,6 @@
   .fb-stat { text-align:center; }
   .fb-stat-num { font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1; }
   .fb-stat-label { font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(224,240,255,0.4);margin-top:4px; }
-  /* Scroll marquee track */
   .fb-track-wrap { overflow:hidden;position:relative;padding:10px 0; }
   .fb-track-wrap::before,.fb-track-wrap::after { content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none; }
   .fb-track-wrap::before { left:0;background:linear-gradient(90deg,var(--deep),transparent); }
@@ -212,7 +228,6 @@
   .qr-btn:hover { background:rgba(255,215,0,0.3);transform:scale(1.1); }
   .qr-zoom-hint { font-size:0.75rem;color:rgba(224,240,255,0.4);letter-spacing:0.08em; }
   .qr-zoom-level { font-family:'Orbitron',sans-serif;font-size:0.82rem;color:var(--gold);min-width:44px;text-align:center; }
-  /* Cursor zoom hint on QR wrap */
   .donate-qr-wrap { cursor:zoom-in; }
 
   /* ── MOBILE RESPONSIVE ── */
@@ -222,31 +237,25 @@
     .container { padding:0 12px; }
     section { padding:40px 0; }
 
-    /* Hero */
     .hero { padding:44px 12px 36px;gap:16px;min-height:100svh; }
     .hero-video-bg video { object-position:60% center; }
     .hero-video-overlay { background:linear-gradient(to bottom,rgba(5,10,26,0.45) 0%,rgba(5,10,26,0.2) 40%,rgba(5,10,26,0.75) 85%,var(--deep) 100%); }
     .hero-video-overlay-sides { background:linear-gradient(to right,rgba(5,10,26,0.7) 0%,transparent 30%,transparent 70%,rgba(5,10,26,0.7) 100%); }
 
-    /* Avatar */
     .avatar-wrapper { width:110px;height:110px; }
     .avatar-chibi { width:55px;height:55px;bottom:-14px;right:-16px; }
     .hero-name { font-size:clamp(2.2rem,14vw,4rem); }
     .hero-subtitle { font-size:0.85rem;letter-spacing:0.18em; }
     .tagline { font-size:1rem;padding:0 8px;text-align:center;line-height:1.6; }
 
-    /* Social buttons — 2 per row */
     .social-grid { gap:8px;display:grid;grid-template-columns:1fr 1fr; }
     .social-btn { padding:10px 12px;font-size:0.82rem;justify-content:center;border-radius:14px; }
 
-    /* Vid mute btn */
     .vid-mute-btn { top:12px;left:12px;width:32px;height:32px;font-size:0.85rem; }
 
-    /* Tabs */
     .tabs { gap:6px;display:grid;grid-template-columns:1fr 1fr; }
     .tab-btn { padding:9px 10px;font-size:0.78rem;text-align:center;border-radius:12px; }
 
-    /* Cards & layout */
     .two-col { grid-template-columns:1fr; }
     .map-cols { grid-template-columns:1fr; }
     .price-card,.gallery-card { padding:16px; }
@@ -257,12 +266,10 @@
     .gallery-grid { gap:8px; }
     .skin-grid { grid-template-columns:1fr 1fr; }
 
-    /* Feedback */
     .fb-stats { gap:18px; }
     .fb-stat-num { font-size:1.5rem; }
     .extra-grid { grid-template-columns:1fr 1fr; }
 
-    /* Donate */
     .donate-card { padding:22px 16px; }
     .donate-inner { flex-direction:column;gap:16px; }
     .donate-divider { width:60%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.35),transparent); }
@@ -270,28 +277,21 @@
     .donate-qr-wrap { width:90px;height:90px; }
     .donate-btn { padding:11px 24px;font-size:0.82rem; }
 
-    /* Section headers */
     .section-title { font-size:clamp(1.2rem,5vw,1.6rem); }
     .section-tag { font-size:0.7rem; }
 
-    /* Price items */
     .price-item { padding:8px 10px; }
     .price-item-name { font-size:0.8rem; }
     .price-item-value { font-size:0.76rem; }
 
-    /* Footer */
     footer { padding:28px 12px;font-size:0.78rem; }
   }
 
   @media(max-width:480px){
-    /* Social: 2 col kept but tighter */
     .social-btn { padding:9px 8px;font-size:0.78rem;gap:6px; }
     .social-btn svg { width:15px;height:15px; }
-
-    /* Tabs: stacked 1 col on very small */
     .tabs { grid-template-columns:1fr; }
     .tab-btn { width:100%;padding:10px 14px; }
-
     .wuwa-grid { grid-template-columns:1fr 1fr; }
     .extra-grid { grid-template-columns:1fr; }
     .hero { gap:14px;padding:36px 10px 30px; }
@@ -301,7 +301,6 @@
     .donate-title { font-size:1.1rem; }
   }
 
-  /* Music player mobile — compact pill anchored to bottom */
   @media(max-width:600px){
     .music-player {
       left:10px;bottom:10px;right:10px;
@@ -327,7 +326,6 @@
   .hero-video-bg video { width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0.55;filter:brightness(0.7) saturate(1.2); }
   .hero-video-overlay { position:absolute;inset:0;background:linear-gradient(to bottom, rgba(5,10,26,0.35) 0%, rgba(5,10,26,0.15) 40%, rgba(5,10,26,0.65) 85%, var(--deep) 100%);z-index:1; }
   .hero-video-overlay-sides { position:absolute;inset:0;background:linear-gradient(to right, rgba(5,10,26,0.6) 0%, transparent 25%, transparent 75%, rgba(5,10,26,0.6) 100%);z-index:1; }
-  .hero { position:relative;overflow:hidden; }
   .hero > *:not(.hero-video-bg):not(.hero-video-overlay):not(.hero-video-overlay-sides) { position:relative;z-index:2; }
 
   /* ── MUSIC PLAYER ── */
@@ -359,7 +357,6 @@
   .mp-vol { width:55px;height:3px;background:rgba(255,255,255,0.12);border-radius:3px;cursor:pointer;position:relative;overflow:hidden;flex-shrink:0; }
   .mp-vol-fill { height:100%;background:rgba(0,245,255,0.6);border-radius:3px;width:70%; }
 
-  /* vid mute toggle */
   .vid-mute-btn { position:absolute;top:18px;left:18px;z-index:10;width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,245,255,0.35);background:rgba(5,10,26,0.6);backdrop-filter:blur(10px);color:rgba(224,240,255,0.8);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-size:1rem; }
   .vid-mute-btn:hover { background:rgba(0,245,255,0.15);border-color:var(--cyan); }
 </style>
@@ -398,7 +395,6 @@
 
 <!-- ══ HERO ══ -->
 <div class="hero">
-  <!-- Video Background Cartethyia -->
   <div class="hero-video-bg">
     <video id="heroBgVideo" autoplay muted loop playsinline preload="auto">
       <source src="cartethyia.mp4" type="video/mp4">
@@ -406,7 +402,6 @@
   </div>
   <div class="hero-video-overlay"></div>
   <div class="hero-video-overlay-sides"></div>
-  <!-- Video mute toggle -->
   <button class="vid-mute-btn" id="vidMuteBtn" title="Bật/Tắt tiếng video" onclick="toggleVidMute()">🔇</button>
   <div class="avatar-wrapper">
     <div class="avatar-ring"></div>
@@ -464,7 +459,6 @@
       </div>
       <div class="donate-divider"></div>
       <div class="donate-qr-col">
-        <!-- ĐỔI "qr.png" thành tên file ảnh QR của bạn -->
         <div class="donate-qr-wrap" onclick="openQrLightbox()">
           <img src="qrcode-Photoroom.png" alt="QR Donate 3K">
         </div>
@@ -491,65 +485,37 @@
     <!-- ── Nạp WuWa ── -->
     <div id="tab-wuwa" class="tab-content active">
       <div class="two-col">
-        <!-- Gallery -->
         <div class="gallery-card">
           <div class="gallery-title">📸 Hình Ảnh Của 3K</div>
           <div class="gallery-grid">
-            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (ảnh 1) -->
             <div class="gallery-img-wrap" onclick="openLightbox(document.getElementById('galleryImg1').src)">
               <img src="ac.png" alt="3K" id="galleryImg1">
             </div>
-            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (ảnh 2) -->
             <div class="gallery-img-wrap" onclick="openLightbox(document.getElementById('galleryImg2').src)">
               <img src="thethang.png" alt="3K" id="galleryImg2">
             </div>
           </div>
         </div>
-        <!-- Bảng giá nạp -->
         <div class="price-card">
           <div class="price-card-title">⚡ Bảng Giá Nạp Lunite</div>
           <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.35);border-radius:10px;text-decoration:none;margin-bottom:14px;transition:all 0.3s;" onmouseover="this.style.background='rgba(24,119,242,0.2)'" onmouseout="this.style.background='rgba(24,119,242,0.1)'">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
           </a>
-          <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 x2 Nếu bạn chưa nạp  Lunite lần đầu ở mức đó · Thanh toán qua chuyển khoản</div>
+          <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 x2 Nếu bạn chưa nạp Lunite lần đầu ở mức đó · Thanh toán qua chuyển khoản</div>
           <div class="wuwa-grid">
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
-              <div class="wuwa-badge">Lunite × 60</div>
-              <div class="wuwa-price">25k</div>
-            </a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
-              <div class="wuwa-badge">Lunite × 300</div>
-              <div class="wuwa-price">115k</div>
-            </a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
-              <div class="wuwa-badge">Lunite × 980</div>
-              <div class="wuwa-price">350k</div>
-            </a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
-              <div class="wuwa-badge">Lunite × 1980</div>
-              <div class="wuwa-price">675k</div>
-            </a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured">
-              <div class="wuwa-badge">Lunite × 3280</div>
-              <div class="wuwa-price">1130k</div>
-            </a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured">
-              <div class="wuwa-badge">Lunite × 6480</div>
-              <div class="wuwa-price">2200k</div>
-            </a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 60</div><div class="wuwa-price">25k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 300</div><div class="wuwa-price">115k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 980</div><div class="wuwa-price">350k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 1980</div><div class="wuwa-price">675k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">Lunite × 3280</div><div class="wuwa-price">1130k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">Lunite × 6480</div><div class="wuwa-price">2200k</div></a>
           </div>
           <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
             <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">📦 Gói thêm</div>
             <div class="wuwa-grid" style="grid-template-columns:1fr 1fr;">
-              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
-                <div class="wuwa-badge">Thẻ tháng</div>
-                <div class="wuwa-price">115k</div>
-              </a>
-              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item">
-                <div class="wuwa-badge">BPP Thường</div>
-                <div class="wuwa-price">225k</div>
-              </a>
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Thẻ tháng</div><div class="wuwa-price">115k</div></a>
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">BPP Thường</div><div class="wuwa-price">225k</div></a>
             </div>
           </div>
         </div>
@@ -559,31 +525,23 @@
     <!-- ── Skin Nhân Vật ── -->
     <div id="tab-skin" class="tab-content">
       <div class="two-col">
-        <!-- Skin image slots - gallery style -->
         <div class="gallery-card">
           <div class="gallery-title">👗 Skin Nhân Vật</div>
           <div style="color:rgba(224,240,255,0.4);font-size:0.8rem;margin-bottom:14px;">🖼️ Click skin để inbox đặt mua</div>
           <div class="gallery-grid">
-            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (skin 1) -->
             <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:block;">
-              <div class="gallery-img-wrap">
-                <img src="skin.png" alt="Skin 1">
-              </div>
+              <div class="gallery-img-wrap"><img src="skin.png" alt="Skin 1"></div>
             </a>
-            <!-- ĐỔI TÊN FILE ẢNH Ở ĐÂY (skin 2) -->
             <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:block;">
-              <div class="gallery-img-wrap">
-                <img src="ung.png" alt="Skin 2">
-              </div>
+              <div class="gallery-img-wrap"><img src="ung.png" alt="Skin 2"></div>
             </a>
           </div>
         </div>
-        <!-- Bảng giá skin -->
         <div class="price-card">
           <div class="price-card-title">💰 Bảng Giá Skin</div>
           <div style="color:rgba(224,240,255,0.4);font-size:0.8rem;margin-bottom:14px;">✏️ Tự chỉnh sửa giá trong file HTML</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
-            <div class="price-item"><span class="price-item-name">jinhsi </span><span class="price-item-value">1130k</span></div>
+            <div class="price-item"><span class="price-item-name">jinhsi</span><span class="price-item-value">1130k</span></div>
             <div class="price-item"><span class="price-item-name">Zani</span><span class="price-item-value">905k</span></div>
             <div class="price-item"><span class="price-item-name">Carlotta</span><span class="price-item-value">900k</span></div>
             <div class="price-item"><span class="price-item-name">Changli</span><span class="price-item-value">910k</span></div>
@@ -718,48 +676,35 @@
       <div class="fb-line"></div>
     </div>
     <div class="fb-stats">
-      <div class="fb-stat">
-        <div class="fb-stat-num">100+</div>
-        <div class="fb-stat-label">Khách hàng</div>
-      </div>
-      <div class="fb-stat">
-        <div class="fb-stat-num">5★</div>
-        <div class="fb-stat-label">Đánh giá</div>
-      </div>
-      <div class="fb-stat">
-        <div class="fb-stat-num">0</div>
-        <div class="fb-stat-label">Khiếu nại</div>
-      </div>
+      <div class="fb-stat"><div class="fb-stat-num">100+</div><div class="fb-stat-label">Khách hàng</div></div>
+      <div class="fb-stat"><div class="fb-stat-num">5★</div><div class="fb-stat-label">Đánh giá</div></div>
+      <div class="fb-stat"><div class="fb-stat-num">0</div><div class="fb-stat-label">Khiếu nại</div></div>
     </div>
 
-     <!-- Marquee track: 10 feedback slots (doubled for infinite loop) -->
     <div class="fb-track-wrap">
       <div class="fb-track" id="fbTrack">
-        <!-- ── 10 feedback cards ── đổi fb1.jpg, fb2.jpg... thành tên file ảnh của bạn -->
-        <div class="fb-card" onclick="openLightbox('fb1.jpg')"><div class="fb-card-img"><img src="nap1.jpg" alt="Khách hàng #1" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #1</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb2.jpg')"><div class="fb-card-img"><img src="nap2.jpg" alt="Khách hàng #2" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #2</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb3.jpg')"><div class="fb-card-img"><img src="nap3.jpg" alt="Khách hàng #3" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #3</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb4.jpg')"><div class="fb-card-img"><img src="nap4.jpg" alt="Khách hàng #4" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #4</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb5.jpg')"><div class="fb-card-img"><img src="nap5.jpg" alt="Khách hàng #5" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #5</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb6.jpg')"><div class="fb-card-img"><img src="nap6.jpg" alt="Khách hàng #6" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #6</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb7.jpg')"><div class="fb-card-img"><img src="nap7.jpg" alt="Khách hàng #7" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #7</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb8.jpg')"><div class="fb-card-img"><img src="nap8.jpg" alt="Khách hàng #8" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #8</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb9.jpg')"><div class="fb-card-img"><img src="nap9.jpg" alt="Khách hàng #9" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #9</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb10.jpg')"><div class="fb-card-img"><img src="nap10.png" alt="Khách hàng #10" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #10</div></div><div class="fb-verified">✓</div></div>
-        <!-- Duplicate set for seamless loop (tự động copy từ trên, không cần sửa) -->
-        <div class="fb-card" onclick="openLightbox('fb1.jpg')"><div class="fb-card-img"><img src="nap1.jpg" alt="Khách hàng #1" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #1</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb2.jpg')"><div class="fb-card-img"><img src="nap2.jpg" alt="Khách hàng #2" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #2</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb3.jpg')"><div class="fb-card-img"><img src="nap3.jpg" alt="Khách hàng #3" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #3</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb4.jpg')"><div class="fb-card-img"><img src="nap4.jpg" alt="Khách hàng #4" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #4</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb5.jpg')"><div class="fb-card-img"><img src="nap5.jpg" alt="Khách hàng #5" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #5</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb6.jpg')"><div class="fb-card-img"><img src="nap6.jpg" alt="Khách hàng #6" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #6</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb7.jpg')"><div class="fb-card-img"><img src="nap7.jpg" alt="Khách hàng #7" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #7</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb8.jpg')"><div class="fb-card-img"><img src="nap8.jpg" alt="Khách hàng #8" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #8</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb9.jpg')"><div class="fb-card-img"><img src="nap9.jpg" alt="Khách hàng #9" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #9</div></div><div class="fb-verified">✓</div></div>
-        <div class="fb-card" onclick="openLightbox('fb10.jpg')"><div class="fb-card-img"><img src="nap10.png" alt="Khách hàng #10" style="width:100%;height:100%;object-fit:cover;"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #10</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap1.jpg')"><div class="fb-card-img"><img src="nap1.jpg" alt="Khách hàng #1"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #1</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap2.jpg')"><div class="fb-card-img"><img src="nap2.jpg" alt="Khách hàng #2"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #2</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap3.jpg')"><div class="fb-card-img"><img src="nap3.jpg" alt="Khách hàng #3"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #3</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap4.jpg')"><div class="fb-card-img"><img src="nap4.jpg" alt="Khách hàng #4"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #4</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap5.jpg')"><div class="fb-card-img"><img src="nap5.jpg" alt="Khách hàng #5"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #5</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap6.jpg')"><div class="fb-card-img"><img src="nap6.jpg" alt="Khách hàng #6"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #6</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap7.jpg')"><div class="fb-card-img"><img src="nap7.jpg" alt="Khách hàng #7"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #7</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap8.jpg')"><div class="fb-card-img"><img src="nap8.jpg" alt="Khách hàng #8"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #8</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap9.jpg')"><div class="fb-card-img"><img src="nap9.jpg" alt="Khách hàng #9"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #9</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap10.png')"><div class="fb-card-img"><img src="nap10.png" alt="Khách hàng #10"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #10</div></div><div class="fb-verified">✓</div></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="fb-card" onclick="openLightbox('nap1.jpg')"><div class="fb-card-img"><img src="nap1.jpg" alt="Khách hàng #1"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #1</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap2.jpg')"><div class="fb-card-img"><img src="nap2.jpg" alt="Khách hàng #2"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #2</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap3.jpg')"><div class="fb-card-img"><img src="nap3.jpg" alt="Khách hàng #3"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #3</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap4.jpg')"><div class="fb-card-img"><img src="nap4.jpg" alt="Khách hàng #4"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #4</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap5.jpg')"><div class="fb-card-img"><img src="nap5.jpg" alt="Khách hàng #5"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #5</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap6.jpg')"><div class="fb-card-img"><img src="nap6.jpg" alt="Khách hàng #6"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #6</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap7.jpg')"><div class="fb-card-img"><img src="nap7.jpg" alt="Khách hàng #7"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #7</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap8.jpg')"><div class="fb-card-img"><img src="nap8.jpg" alt="Khách hàng #8"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #8</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap9.jpg')"><div class="fb-card-img"><img src="nap9.jpg" alt="Khách hàng #9"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #9</div></div><div class="fb-verified">✓</div></div>
+        <div class="fb-card" onclick="openLightbox('nap10.png')"><div class="fb-card-img"><img src="nap10.png" alt="Khách hàng #10"></div><div class="fb-card-body"><div class="fb-card-tag">✅ Đã nhận dịch vụ</div><div class="fb-card-name">Khách hàng #10</div></div><div class="fb-verified">✓</div></div>
       </div>
-    </div>
- 
     </div>
 
     <div style="text-align:center;margin-top:30px;">
@@ -802,43 +747,6 @@
 </div>
 
 <script>
-// Image upload helpers
-function loadGalleryImg(input, imgId, wrapId, phId) {
-  const file = input.files[0];
-  if (!file) return;
-  const url = URL.createObjectURL(file);
-  const img = document.getElementById(imgId);
-  const wrap = document.getElementById(wrapId);
-  img.src = url;
-  img.style.display = 'block';
-  if (phId) { const ph = document.getElementById(phId); if(ph) ph.style.display='none'; }
-  wrap.style.border = '';
-  wrap.style.background = '';
-}
-function loadSkinImg(input, imgId, phId) {
-  const file = input.files[0];
-  if (!file) return;
-  const url = URL.createObjectURL(file);
-  const img = document.getElementById(imgId);
-  img.src = url;
-  img.style.display = 'block';
-  const ph = document.getElementById(phId);
-  if (ph) ph.style.display = 'none';
-}
-function loadFbImg(input, num) {
-  const file = input.files[0];
-  if (!file) return;
-  const url = URL.createObjectURL(file);
-  const img = document.getElementById('fbImg'+num);
-  const ph  = document.getElementById('fbPH'+num);
-  const imgb= document.getElementById('fbImg'+num+'b');
-  const phb = document.getElementById('fbPH'+num+'b');
-  if(img){ img.src=url; img.style.display='block'; }
-  if(ph)  ph.style.display='none';
-  if(imgb){ imgb.src=url; imgb.style.display='block'; }
-  if(phb) phb.style.display='none';
-}
-
 // ── VIDEO MUTE ──
 function toggleVidMute() {
   const v = document.getElementById('heroBgVideo');
@@ -891,7 +799,6 @@ function toggleVidMute() {
   });
   audio.addEventListener('loadedmetadata', ()=>{
     durationEl.textContent = fmt(audio.duration);
-    // auto scroll if title overflows
     setTimeout(()=>{
       const parent = titleScroll.parentElement;
       if(titleScroll.scrollWidth > parent.offsetWidth+4) titleScroll.classList.add('scrolling');
@@ -910,7 +817,6 @@ function toggleVidMute() {
     volFill.style.width = (pct*100)+'%';
   });
 
-  // Tự phát khi vào trang (hoặc khi người dùng tương tác lần đầu)
   function tryAutoplay() {
     audio.play().then(()=>{ updatePlay(true); }).catch(()=>{});
   }
@@ -921,6 +827,7 @@ function toggleVidMute() {
   });
 })();
 
+// Stars
 const starsEl = document.getElementById('stars');
 for (let i = 0; i < 120; i++) {
   const s = document.createElement('div');
@@ -929,6 +836,7 @@ for (let i = 0; i < 120; i++) {
   s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*3+2}s;animation-delay:${Math.random()*5}s;`;
   starsEl.appendChild(s);
 }
+
 // Cursor
 const cursor = document.getElementById('cursor');
 const dot = document.getElementById('cursorDot');
@@ -936,11 +844,13 @@ document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px';
   dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px';
 });
+
 // Reveal
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
 // Tabs
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -948,6 +858,7 @@ function switchTab(id, btn) {
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
 }
+
 // Lightbox
 function openLightbox(src) {
   document.getElementById('lightbox-img').src = src;
@@ -955,12 +866,11 @@ function openLightbox(src) {
 }
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 
-// QR Lightbox with zoom
+// QR Lightbox
 let qrScale = 1;
 const QR_MIN = 0.5, QR_MAX = 4;
 
 function openQrLightbox() {
-  // sync src from donate card in case user changed it
   const src = document.querySelector('.donate-qr-wrap img').src;
   document.getElementById('qrLightboxImg').src = src;
   qrReset();
@@ -979,12 +889,10 @@ function qrReset() {
   document.getElementById('qrLightboxImg').style.transform = 'scale(1)';
   document.getElementById('qrZoomLevel').textContent = '100%';
 }
-// Scroll wheel zoom on QR lightbox
 document.getElementById('qrZoomWrap').addEventListener('wheel', e => {
   e.preventDefault();
   qrZoom(e.deltaY < 0 ? 0.15 : -0.15);
 }, { passive: false });
-// Pinch to zoom (touch)
 let lastDist = 0;
 document.getElementById('qrZoomWrap').addEventListener('touchmove', e => {
   if (e.touches.length === 2) {
