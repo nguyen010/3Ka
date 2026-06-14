@@ -62,7 +62,7 @@
   .avatar-chibi img { width:100%;height:100%;object-fit:cover; }
   @keyframes chibi-bounce { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
   @keyframes spin { to{transform:rotate(360deg)} }
-  .hero-name { font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,8vw,5rem);font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--pink),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;line-height:1;animation:name-glow 3s ease-in-out infinite alternate; }
+  .hero-name { font-family:'Rajdhani',sans-serif;font-size:clamp(2.5rem,8vw,5rem);font-weight:900;color:#ffffff;letter-spacing:0.1em;line-height:1;animation:name-glow 3s ease-in-out infinite alternate; }
   @keyframes name-glow { 0%{filter:drop-shadow(0 0 20px rgba(0,245,255,0.5))}100%{filter:drop-shadow(0 0 40px rgba(255,45,120,0.5))} }
   .hero-subtitle { font-size:1.1rem;color:rgba(224,240,255,0.6);letter-spacing:0.3em;text-transform:uppercase; }
   .tagline { font-size:1.2rem;color:var(--cyan);font-weight:600; }
@@ -84,7 +84,7 @@
   section { padding:70px 0; }
   .section-header { text-align:center;margin-bottom:45px; }
   .section-tag { font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px; }
-  .section-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;background:linear-gradient(135deg,#fff 40%,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .section-title { font-family:'Rajdhani',sans-serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;color:#ffffff;letter-spacing:0.03em; }
   .section-line { width:60px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--pink));margin:15px auto 0;border-radius:2px; }
 
   /* Donate */
@@ -94,9 +94,9 @@
   .donate-inner { display:flex;align-items:center;justify-content:center;gap:32px;position:relative; }
   .donate-text-col { text-align:center;flex:1; }
   .donate-icon { font-size:2.5rem;margin-bottom:12px;display:block; }
-  .donate-title { font-family:'Orbitron',sans-serif;font-size:1.3rem;color:var(--gold);margin-bottom:8px;position:relative; }
+  .donate-title { font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;color:#ffffff;margin-bottom:8px;position:relative;letter-spacing:0.02em; }
   .donate-desc { color:rgba(224,240,255,0.7);font-size:0.95rem;margin-bottom:20px;position:relative; }
-  .donate-btn { display:inline-flex;align-items:center;gap:10px;padding:14px 35px;background:linear-gradient(135deg,var(--gold),#ffaa00);color:#0a0500;text-decoration:none;border-radius:40px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s ease;position:relative;box-shadow:0 0 30px rgba(255,215,0,0.3);border:none;cursor:pointer; }
+  .donate-btn { display:inline-flex;align-items:center;gap:10px;padding:14px 35px;background:linear-gradient(135deg,var(--gold),#ffaa00);color:#0a0500;text-decoration:none;border-radius:40px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.05em;transition:all 0.3s ease;position:relative;box-shadow:0 0 30px rgba(255,215,0,0.3);border:none;cursor:pointer; }
   .donate-btn:hover { transform:scale(1.05);box-shadow:0 0 50px rgba(255,215,0,0.5); }
   .donate-divider { width:1px;height:120px;background:linear-gradient(180deg,transparent,rgba(255,215,0,0.35),transparent);flex-shrink:0; }
   .donate-qr-col { display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0; }
@@ -112,11 +112,11 @@
   .price-card { background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:25px;backdrop-filter:blur(20px);position:relative;overflow:hidden;transition:all 0.3s; }
   .price-card:hover { border-color:rgba(0,245,255,0.4);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,245,255,0.08); }
   .price-card::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--pink)); }
-  .price-card-title { font-family:'Orbitron',sans-serif;font-size:1rem;color:var(--cyan);margin-bottom:20px;display:flex;align-items:center;gap:8px; }
+  .price-card-title { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:#ffffff;margin-bottom:20px;display:flex;align-items:center;gap:8px;letter-spacing:0.02em; }
 
   .gallery-card { background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:25px;backdrop-filter:blur(20px);position:relative;overflow:hidden; }
   .gallery-card::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--pink),var(--gold)); }
-  .gallery-title { font-family:'Orbitron',sans-serif;font-size:1rem;color:var(--pink);margin-bottom:18px;display:flex;align-items:center;gap:8px; }
+  .gallery-title { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:#ffffff;margin-bottom:18px;display:flex;align-items:center;gap:8px;letter-spacing:0.02em; }
   .gallery-grid { display:grid;grid-template-columns:1fr;gap:10px; }
   .gallery-img-wrap { border-radius:12px;overflow:hidden;border:1px solid rgba(255,45,120,0.2);aspect-ratio:16/9;position:relative;cursor:pointer; }
   .gallery-img-wrap img { width:100%;height:100%;object-fit:cover;transition:transform 0.4s; }
@@ -133,7 +133,7 @@
   .wuwa-item.featured { border-color:rgba(255,45,120,0.4);background:rgba(255,45,120,0.05); }
   .wuwa-item.featured:hover { border-color:var(--pink);box-shadow:0 0 20px rgba(255,45,120,0.2); }
   .wuwa-badge { font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(224,240,255,0.55);margin-bottom:8px; }
-  .wuwa-price { font-family:'Orbitron',sans-serif;font-size:1.25rem;font-weight:900;color:var(--gold);line-height:1; }
+  .wuwa-price { font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:900;color:var(--gold);line-height:1; }
 
   /* Skin */
   .skin-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px; }
@@ -147,18 +147,18 @@
   .skin-slot-ph-icon { font-size:2rem;opacity:0.3; }
   .skin-info { padding:10px;border-top:1px solid rgba(255,215,0,0.1); }
   .skin-name { font-size:0.8rem;color:rgba(224,240,255,0.75);margin-bottom:4px; }
-  .skin-price { font-family:'Orbitron',sans-serif;font-size:0.88rem;font-weight:700;color:var(--gold); }
+  .skin-price { font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gold); }
 
   /* Feedback section */
   .feedback-section { padding:70px 0; }
   .fb-header { text-align:center;margin-bottom:40px; }
   .fb-badge { display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(0,245,255,0.08);border:1px solid rgba(0,245,255,0.25);border-radius:30px;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px; }
-  .fb-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.3rem,3.5vw,1.9rem);font-weight:700;background:linear-gradient(135deg,#fff 30%,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .fb-title { font-family:'Rajdhani',sans-serif;font-size:clamp(1.3rem,3.5vw,1.9rem);font-weight:700;color:#ffffff;letter-spacing:0.03em; }
   .fb-subtitle { color:rgba(224,240,255,0.5);font-size:0.95rem;margin-top:8px; }
   .fb-line { width:60px;height:2px;background:linear-gradient(90deg,var(--gold),var(--pink));margin:14px auto 0;border-radius:2px; }
   .fb-stats { display:flex;justify-content:center;gap:40px;margin-bottom:40px;flex-wrap:wrap; }
   .fb-stat { text-align:center; }
-  .fb-stat-num { font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1; }
+  .fb-stat-num { font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1; }
   .fb-stat-label { font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(224,240,255,0.4);margin-top:4px; }
   .fb-track-wrap { overflow:hidden;position:relative;padding:10px 0; }
   .fb-track-wrap::before,.fb-track-wrap::after { content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none; }
@@ -183,7 +183,7 @@
   .price-item { display:flex;align-items:center;justify-content:space-between;padding:9px 13px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);border-radius:9px;transition:all 0.2s; }
   .price-item:hover { background:rgba(0,245,255,0.05);border-color:rgba(0,245,255,0.2); }
   .price-item-name { font-size:0.85rem;color:rgba(224,240,255,0.8); }
-  .price-item-value { font-family:'Orbitron',sans-serif;font-size:0.82rem;font-weight:700;color:var(--gold);margin-left:8px;white-space:nowrap; }
+  .price-item-value { font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gold);margin-left:8px;white-space:nowrap; }
 
   /* Map cols */
   .map-cols { display:grid;grid-template-columns:1fr 1fr;gap:20px; }
@@ -197,7 +197,7 @@
   .extra-list { list-style:none; }
   .extra-list li { display:flex;justify-content:space-between;font-size:0.88rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(224,240,255,0.8); }
   .extra-list li:last-child { border-bottom:none; }
-  .extra-list li span:last-child { font-family:'Orbitron',sans-serif;font-size:0.78rem;font-weight:700;color:var(--gold); }
+  .extra-list li span:last-child { font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;color:var(--gold); }
 
   /* Tabs */
   .tabs { display:flex;justify-content:center;gap:10px;margin-bottom:28px;flex-wrap:wrap; }
@@ -220,7 +220,7 @@
   .qr-lightbox { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:10001;align-items:center;justify-content:center;flex-direction:column;gap:20px; }
   .qr-lightbox.open { display:flex; }
   .qr-lightbox-close { position:absolute;top:18px;right:24px;font-size:2.2rem;color:rgba(255,255,255,0.8);cursor:pointer;line-height:1;z-index:2; }
-  .qr-lightbox-title { font-family:'Orbitron',sans-serif;font-size:0.9rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase; }
+  .qr-lightbox-title { font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#ffffff;letter-spacing:0.1em;text-transform:uppercase; }
   .qr-zoom-wrap { position:relative;overflow:hidden;border-radius:18px;border:2px solid rgba(255,215,0,0.4);box-shadow:0 0 40px rgba(255,215,0,0.25);background:white;padding:10px;transition:none; }
   .qr-zoom-wrap img { display:block;width:280px;height:280px;object-fit:contain;border-radius:10px;transform-origin:center center;transition:transform 0.2s ease;user-select:none; }
   .qr-controls { display:flex;align-items:center;gap:14px; }
@@ -277,7 +277,7 @@
     .donate-qr-wrap { width:90px;height:90px; }
     .donate-btn { padding:11px 24px;font-size:0.82rem; }
 
-    .section-title { font-size:clamp(1.2rem,5vw,1.6rem); }
+    .section-title { font-size:clamp(1.2rem,5vw,1.6rem);color:#ffffff; }
     .section-tag { font-size:0.7rem; }
 
     .price-item { padding:8px 10px; }
@@ -476,7 +476,9 @@
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('wuwa',this)">🎮 Nạp Wuthering Waves</button>
+      <button class="tab-btn active" onclick="switchTab('wuwa',this)"><img src="wuwa.jpg" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Wuthering Waves</button>
+      <button class="tab-btn" onclick="switchTab('genshin',this)"><img src="ghenshin.jpg" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Genshin Impact</button>
+      <button class="tab-btn" onclick="switchTab('hsr',this)"><img src="honkai.png" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Honkai: Star Rail</button>
       <button class="tab-btn" onclick="switchTab('skin',this)">👗 Skin Nhân Vật</button>
       <button class="tab-btn" onclick="switchTab('map',this)">🗺️ Chạy Map Sự Kiện</button>
       <button class="tab-btn" onclick="switchTab('extra',this)">⭐ Dịch Vụ Thêm</button>
@@ -497,7 +499,10 @@
           </div>
         </div>
         <div class="price-card">
-          <div class="price-card-title">⚡ Bảng Giá Nạp Lunite</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:10px 14px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
+            <img src="wuwa.jpg" alt="Wuthering Waves" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:700;color:#ffffff;letter-spacing:0.02em;">Wuthering Waves <span style="color:rgba(255,255,255,0.5);font-weight:600;">(LOGIN)</span></span>
+          </div>
           <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.35);border-radius:10px;text-decoration:none;margin-bottom:14px;transition:all 0.3s;" onmouseover="this.style.background='rgba(24,119,242,0.2)'" onmouseout="this.style.background='rgba(24,119,242,0.1)'">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
@@ -505,7 +510,7 @@
           <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 x2 Nếu bạn chưa nạp Lunite lần đầu ở mức đó · Thanh toán qua chuyển khoản</div>
           <div class="wuwa-grid">
             <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 60</div><div class="wuwa-price">23k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 300</div><div class="wuwa-price">108k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 300</div><div class="wuwa-price">100k</div></a>
             <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 980</div><div class="wuwa-price">330k</div></a>
             <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 1980</div><div class="wuwa-price">650k</div></a>
             <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">Lunite × 3280</div><div class="wuwa-price">1080k</div></a>
@@ -514,9 +519,133 @@
           <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
             <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">📦 Gói thêm</div>
             <div class="wuwa-grid" style="grid-template-columns:1fr 1fr;">
-              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Thẻ tháng</div><div class="wuwa-price">108kk</div></a>
-              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">BPP Thường</div><div class="wuwa-price">218k</div></a>
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Thẻ tháng</div><div class="wuwa-price">100k</div></a>
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">BPP Thường</div><div class="wuwa-price">210k</div></a>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Nạp Genshin Impact ── -->
+    <div id="tab-genshin" class="tab-content">
+      <div class="two-col">
+        <div class="price-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:10px 14px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
+            <img src="ghenshin.jpg" alt="Genshin Impact" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:700;color:#ffffff;letter-spacing:0.02em;">Genshin Impact <span style="color:rgba(255,255,255,0.5);font-weight:600;">(LOGIN)</span></span>
+          </div>
+          <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.35);border-radius:10px;text-decoration:none;margin-bottom:14px;transition:all 0.3s;" onmouseover="this.style.background='rgba(24,119,242,0.2)'" onmouseout="this.style.background='rgba(24,119,242,0.1)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
+          </a>
+          <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 Nạp qua tài khoản LOGIN · Thanh toán qua chuyển khoản</div>
+          <div class="wuwa-grid">
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">60 Đá Sáng Thế</div><div class="wuwa-price">22k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">300 + 30 Đá</div><div class="wuwa-price">85k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">980 + 110 Đá</div><div class="wuwa-price">250k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">1980 + 260 Đá</div><div class="wuwa-price">495k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">3280 + 600 Đá</div><div class="wuwa-price">820k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">6480 + 1600 Đá</div><div class="wuwa-price">1690k</div></a>
+          </div>
+          <div style="margin-top:12px;">
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured" style="display:block;text-align:center;border-radius:12px;padding:14px 10px;">
+              <div class="wuwa-badge">Full Gói Đá Sáng Thế</div>
+              <div class="wuwa-price">3400k</div>
+            </a>
+          </div>
+          <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
+            <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">📦 Gói đặc biệt</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div class="price-item"><span class="price-item-name">Không Nguyệt Chúc Phúc (Welkin)</span><span class="price-item-value">85k</span></div>
+              <div class="price-item"><span class="price-item-name">Nhật Ký Hành Trình (BP Thường)</span><span class="price-item-value">190k</span></div>
+              <div class="price-item"><span class="price-item-name">Bài Ca Trân Châu (BP Nâng Cao)</span><span class="price-item-value">375k</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-card-title">ℹ️ Thông Tin Nạp Genshin</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:0.88rem;color:rgba(224,240,255,0.75);">
+            <div style="padding:12px;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;">
+              <div style="color:var(--gold);font-weight:700;margin-bottom:6px;">🔑 Hình thức nạp</div>
+              <div>Nạp qua tài khoản LOGIN — bạn cung cấp thông tin đăng nhập, 3K nạp trực tiếp vào tài khoản.</div>
+            </div>
+            <div style="padding:12px;background:rgba(0,245,255,0.04);border:1px solid rgba(0,245,255,0.1);border-radius:10px;">
+              <div style="color:var(--cyan);font-weight:700;margin-bottom:6px;">✅ Ưu điểm</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+                <li>💰 Giá rẻ, an toàn, có thể cấp bill</li>
+                <li>🎁 Gói nạp nhận x2 bonus giống Cửa Hàng</li>
+                <li>⚡ Xử lý nhanh, hỗ trợ tận tình</li>
+                <li>📋 Cấp bill đầy đủ khi yêu cầu</li>
+              </ul>
+            </div>
+            <div style="padding:12px;background:rgba(255,45,120,0.04);border:1px solid rgba(255,45,120,0.12);border-radius:10px;">
+              <div style="color:var(--pink);font-weight:700;margin-bottom:6px;">📝 Lưu ý</div>
+              <div style="color:rgba(224,240,255,0.6);font-size:0.82rem;line-height:1.6;">Chỉ làm phiền khách iu đoạn lấy code (6 số gửi về mail) khi sốp liên lạc. Đọc kỹ phần mô tả phía dưới nha~</div>
+            </div>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1));border:1px solid rgba(0,245,255,0.3);border-radius:12px;text-decoration:none;color:var(--cyan);font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.25),rgba(255,45,120,0.15))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1))'">
+              💬 Inbox Facebook để đặt nạp →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Nạp Honkai: Star Rail ── -->
+    <div id="tab-hsr" class="tab-content">
+      <div class="two-col">
+        <div class="price-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:10px 14px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
+            <img src="honkai.png" alt="Honkai: Star Rail" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:700;color:#ffffff;letter-spacing:0.02em;">Honkai: Star Rail <span style="color:rgba(255,255,255,0.5);font-weight:600;">(LOGIN)</span></span>
+          </div>
+          <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.35);border-radius:10px;text-decoration:none;margin-bottom:14px;transition:all 0.3s;" onmouseover="this.style.background='rgba(24,119,242,0.2)'" onmouseout="this.style.background='rgba(24,119,242,0.1)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
+          </a>
+          <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 Nạp qua tài khoản LOGIN · Thanh toán qua chuyển khoản</div>
+          <div class="wuwa-grid">
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">60 Mộng Ước Viễn Cổ</div><div class="wuwa-price">23k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">300 + 30 Mộng Ước</div><div class="wuwa-price">87k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">980 + 110 Mộng Ước</div><div class="wuwa-price">260k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">1980 + 260 Mộng Ước</div><div class="wuwa-price">505k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">3280 + 600 Mộng Ước</div><div class="wuwa-price">830k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">6480 + 1600 Mộng Ước</div><div class="wuwa-price">1750k</div></a>
+          </div>
+          <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
+            <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">📦 Gói đặc biệt</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div class="price-item"><span class="price-item-name">Chứng Nhận Tiếp Tế Đội Tàu (Welkin)</span><span class="price-item-value">87k</span></div>
+              <div class="price-item"><span class="price-item-name">Vinh Quang Khách Vô Danh (BP Thường)</span><span class="price-item-value">195k</span></div>
+              <div class="price-item"><span class="price-item-name">Huân Chương Khách Vô Danh (BP Nâng Cao)</span><span class="price-item-value">385k</span></div>
+              <div class="price-item"><span class="price-item-name">Phụ Kiện Tóc Thời Thượng</span><span class="price-item-value">70k</span></div>
+              <div class="price-item"><span class="price-item-name">Trợ Giúp Khai Phá</span><span class="price-item-value">110k</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-card-title">ℹ️ Thông Tin Nạp HSR</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:0.88rem;color:rgba(224,240,255,0.75);">
+            <div style="padding:12px;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;">
+              <div style="color:var(--gold);font-weight:700;margin-bottom:6px;">🔑 Hình thức nạp</div>
+              <div>Nạp qua tài khoản LOGIN — bạn cung cấp thông tin đăng nhập, 3K nạp trực tiếp vào tài khoản.</div>
+            </div>
+            <div style="padding:12px;background:rgba(0,245,255,0.04);border:1px solid rgba(0,245,255,0.1);border-radius:10px;">
+              <div style="color:var(--cyan);font-weight:700;margin-bottom:6px;">✅ Ưu điểm</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+                <li>💰 Giá rẻ, an toàn, có thể cấp bill</li>
+                <li>🎁 Nâng niu từng gói nạp</li>
+                <li>⚡ Đẩy tiến độ sớm nhất</li>
+                <li>📋 Cấp bill đầy đủ khi yêu cầu</li>
+              </ul>
+            </div>
+            <div style="padding:12px;background:rgba(255,45,120,0.04);border:1px solid rgba(255,45,120,0.12);border-radius:10px;">
+              <div style="color:var(--pink);font-weight:700;margin-bottom:6px;">📝 Lưu ý</div>
+              <div style="color:rgba(224,240,255,0.6);font-size:0.82rem;line-height:1.6;">Chỉ làm phiền khách iu đoạn lấy code (6 số gửi về mail) khi sốp liên lạc. Nhớ liên kết tài khoản sang Hoyoverse nhé. Đọc kỹ phần mô tả phía dưới nha~</div>
+            </div>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1));border:1px solid rgba(0,245,255,0.3);border-radius:12px;text-decoration:none;color:var(--cyan);font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.25),rgba(255,45,120,0.15))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1))'">
+              💬 Inbox Facebook để đặt nạp →
+            </a>
           </div>
         </div>
       </div>
@@ -721,30 +850,6 @@
   <p style="margin-top:8px;font-size:0.75rem;">© 2025 · Liên hệ Facebook hoặc Discord để đặt dịch vụ</p>
 </footer>
 
-<!-- ══ MUSIC PLAYER ══ -->
-<div class="music-player" id="musicPlayer">
-  <div class="mp-icon" id="mpIcon">
-    <img src="song-thumb.png" alt="cover">
-  </div>
-  <div class="mp-info">
-    <div class="mp-title" id="mpTitleWrap" style="overflow:hidden;max-width:160px;">
-      <span class="mp-title-scroll" id="mpTitleScroll">Người Yêu Bỏ Lỡ – Accusefive</span>
-    </div>
-    <div class="mp-bar-row">
-      <span class="mp-time" id="mpCurrent">0:00</span>
-      <div class="mp-progress" id="mpProgress"><div class="mp-progress-fill" id="mpFill"></div></div>
-      <span class="mp-time" id="mpDuration">0:00</span>
-    </div>
-  </div>
-  <div class="mp-controls">
-    <button class="mp-btn" id="mpPlayBtn" title="Play/Pause">
-      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    </button>
-    <div class="mp-vol" id="mpVol" title="Âm lượng">
-      <div class="mp-vol-fill" id="mpVolFill"></div>
-    </div>
-  </div>
-</div>
 
 <script>
 // ── VIDEO MUTE ──
@@ -755,77 +860,6 @@ function toggleVidMute() {
   btn.textContent = v.muted ? '🔇' : '🔊';
 }
 
-// ── MUSIC PLAYER ──
-(function(){
-  const audio = new Audio('music.mp3');
-  audio.loop = true;
-  audio.volume = 0.7;
-  let playing = false;
-
-  const icon = document.getElementById('mpIcon');
-  const playBtn = document.getElementById('mpPlayBtn');
-  const fill = document.getElementById('mpFill');
-  const currentEl = document.getElementById('mpCurrent');
-  const durationEl = document.getElementById('mpDuration');
-  const volFill = document.getElementById('mpVolFill');
-  const titleScroll = document.getElementById('mpTitleScroll');
-  const progress = document.getElementById('mpProgress');
-  const volBar = document.getElementById('mpVol');
-
-  function fmt(s) {
-    if(isNaN(s)) return '0:00';
-    const m = Math.floor(s/60), sec = Math.floor(s%60);
-    return m+':'+(sec<10?'0':'')+sec;
-  }
-
-  function updatePlay(isPlaying) {
-    playing = isPlaying;
-    icon.classList.toggle('playing', isPlaying);
-    playBtn.innerHTML = isPlaying
-      ? '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>'
-      : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-  }
-
-  playBtn.addEventListener('click', ()=>{
-    if(playing){ audio.pause(); updatePlay(false); }
-    else { audio.play().then(()=>updatePlay(true)).catch(()=>{}); }
-  });
-
-  audio.addEventListener('timeupdate', ()=>{
-    if(!audio.duration) return;
-    const pct = (audio.currentTime/audio.duration)*100;
-    fill.style.width = pct+'%';
-    currentEl.textContent = fmt(audio.currentTime);
-  });
-  audio.addEventListener('loadedmetadata', ()=>{
-    durationEl.textContent = fmt(audio.duration);
-    setTimeout(()=>{
-      const parent = titleScroll.parentElement;
-      if(titleScroll.scrollWidth > parent.offsetWidth+4) titleScroll.classList.add('scrolling');
-    },500);
-  });
-
-  progress.addEventListener('click', e=>{
-    const rect = progress.getBoundingClientRect();
-    const pct = (e.clientX - rect.left) / rect.width;
-    audio.currentTime = pct * audio.duration;
-  });
-  volBar.addEventListener('click', e=>{
-    const rect = volBar.getBoundingClientRect();
-    const pct = Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));
-    audio.volume = pct;
-    volFill.style.width = (pct*100)+'%';
-  });
-
-  function tryAutoplay() {
-    audio.play().then(()=>{ updatePlay(true); }).catch(()=>{});
-  }
-  audio.play().then(()=>updatePlay(true)).catch(()=>{
-    document.addEventListener('click', tryAutoplay, {once:true});
-    document.addEventListener('keydown', tryAutoplay, {once:true});
-    document.addEventListener('touchstart', tryAutoplay, {once:true});
-  });
-})();
 
 // Stars
 const starsEl = document.getElementById('stars');
