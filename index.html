@@ -92,7 +92,7 @@
   .donate-card::before { content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(255,215,0,0.05) 0%,transparent 60%);animation:pulse-glow 4s ease-in-out infinite; }
   @keyframes pulse-glow { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.6} }
   .donate-inner { display:flex;align-items:center;justify-content:center;gap:32px;position:relative; }
-  .donate-text-col { text-align:center;flex:1; }
+  .donate-text-col { text-align:center;flex:1;min-width:0; }
   .donate-icon { font-size:2.5rem;margin-bottom:12px;display:block; }
   .donate-title { font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;color:#ffffff;margin-bottom:8px;position:relative;letter-spacing:0.02em; }
   .donate-desc { color:rgba(224,240,255,0.7);font-size:0.95rem;margin-bottom:20px;position:relative; }
@@ -261,8 +261,10 @@
     .price-card,.gallery-card { padding:16px; }
     .wuwa-grid { grid-template-columns:repeat(3,1fr);gap:8px; }
     .wuwa-item { padding:10px 6px; }
+    .wuwa-item img { width:48px !important;height:48px !important; }
     .wuwa-badge { font-size:0.6rem; }
     .wuwa-price { font-size:1.05rem; }
+    #wuwaShopGrid { grid-template-columns:repeat(2,1fr) !important; }
     .gallery-grid { gap:8px; }
     .skin-grid { grid-template-columns:1fr 1fr; }
 
@@ -270,12 +272,17 @@
     .fb-stat-num { font-size:1.5rem; }
     .extra-grid { grid-template-columns:1fr 1fr; }
 
-    .donate-card { padding:22px 16px; }
-    .donate-inner { flex-direction:column;gap:16px; }
-    .donate-divider { width:60%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.35),transparent); }
-    .donate-qr-col { flex-direction:row;gap:16px;align-items:center;justify-content:center; }
-    .donate-qr-wrap { width:90px;height:90px; }
-    .donate-btn { padding:11px 24px;font-size:0.82rem; }
+    .donate-card { padding:20px 14px; }
+    .donate-inner { flex-direction:column;gap:18px;align-items:center; }
+    .donate-text-col { width:100%;text-align:center; }
+    .donate-icon { font-size:2rem;margin-bottom:8px; }
+    .donate-title { font-size:1.15rem;margin-bottom:6px; }
+    .donate-desc { font-size:0.88rem;margin-bottom:16px; }
+    .donate-btn { width:100%;justify-content:center;padding:13px 20px;font-size:0.9rem; }
+    .donate-divider { width:80%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.35),transparent); }
+    .donate-qr-col { flex-direction:row;gap:16px;align-items:center;justify-content:center;width:100%; }
+    .donate-qr-wrap { width:90px;height:90px;flex-shrink:0; }
+    .donate-qr-label { font-size:0.8rem;text-align:left; }
 
     .section-title { font-size:clamp(1.2rem,5vw,1.6rem);color:#ffffff; }
     .section-tag { font-size:0.7rem; }
@@ -479,25 +486,12 @@
       <button class="tab-btn active" onclick="switchTab('wuwa',this)"><img src="wuwa.jpg" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Wuthering Waves</button>
       <button class="tab-btn" onclick="switchTab('genshin',this)"><img src="ghenshin.jpg" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Genshin Impact</button>
       <button class="tab-btn" onclick="switchTab('hsr',this)"><img src="honkai.png" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Honkai: Star Rail</button>
-      <button class="tab-btn" onclick="switchTab('skin',this)">👗 Skin Nhân Vật</button>
       <button class="tab-btn" onclick="switchTab('map',this)">🗺️ Chạy Map Sự Kiện</button>
-      <button class="tab-btn" onclick="switchTab('extra',this)">⭐ Dịch Vụ Thêm</button>
     </div>
 
     <!-- ── Nạp WuWa ── -->
     <div id="tab-wuwa" class="tab-content active">
       <div class="two-col">
-        <div class="gallery-card">
-          <div class="gallery-title">📸 Hình Ảnh Của 3K</div>
-          <div class="gallery-grid">
-            <div class="gallery-img-wrap" onclick="openLightbox(document.getElementById('galleryImg1').src)">
-              <img src="ac (2).png" alt="3K" id="galleryImg1">
-            </div>
-            <div class="gallery-img-wrap" onclick="openLightbox(document.getElementById('galleryImg2').src)">
-              <img src="thethang (2).png" alt="3K" id="galleryImg2">
-            </div>
-          </div>
-        </div>
         <div class="price-card">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:10px 14px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
             <img src="wuwa.jpg" alt="Wuthering Waves" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0;">
@@ -509,19 +503,61 @@
           </a>
           <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 x2 Nếu bạn chưa nạp Lunite lần đầu ở mức đó · Thanh toán qua chuyển khoản</div>
           <div class="wuwa-grid">
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 60</div><div class="wuwa-price">23k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 300</div><div class="wuwa-price">100k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 980</div><div class="wuwa-price">330k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Lunite × 1980</div><div class="wuwa-price">650k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">Lunite × 3280</div><div class="wuwa-price">1080k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">Lunite × 6480</div><div class="wuwa-price">2100k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><img src="wuwa/60.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div style="font-size:0.6rem;color:rgba(0,245,255,0.7);font-weight:700;margin-bottom:3px;">✦ 60 + 60</div><div class="wuwa-badge">Lunite × 60</div><div class="wuwa-price">19k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><img src="wuwa/300.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div style="font-size:0.6rem;color:rgba(0,245,255,0.7);font-weight:700;margin-bottom:3px;">✦ 300 + 300</div><div class="wuwa-badge">Lunite × 300</div><div class="wuwa-price">95k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><img src="wuwa/980.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div style="font-size:0.6rem;color:rgba(0,245,255,0.7);font-weight:700;margin-bottom:3px;">✦ 980 + 980</div><div class="wuwa-badge">Lunite × 980</div><div class="wuwa-price">285k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><img src="wuwa/1980.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div style="font-size:0.6rem;color:rgba(0,245,255,0.7);font-weight:700;margin-bottom:3px;">✦ 1980 + 1980</div><div class="wuwa-badge">Lunite × 1980</div><div class="wuwa-price">580k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><img src="wuwa/3200.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div style="font-size:0.6rem;color:rgba(255,45,120,0.8);font-weight:700;margin-bottom:3px;">✦ 3280 + 3280</div><div class="wuwa-badge">Lunite × 3280</div><div class="wuwa-price">960k</div></a>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><img src="wuwa/6480.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div style="font-size:0.6rem;color:rgba(255,45,120,0.8);font-weight:700;margin-bottom:3px;">✦ 6480 + 6480</div><div class="wuwa-badge">Lunite × 6480</div><div class="wuwa-price">1950k</div></a>
           </div>
           <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
             <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">📦 Gói thêm</div>
             <div class="wuwa-grid" style="grid-template-columns:1fr 1fr;">
-              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">Thẻ tháng</div><div class="wuwa-price">100k</div></a>
-              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">BPP Thường</div><div class="wuwa-price">210k</div></a>
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><img src="wuwa/thethang.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div class="wuwa-badge">Thẻ tháng</div><div class="wuwa-price">95k</div></a>
+              <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><img src="wuwa/bpp.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:2px;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.1);"><div class="wuwa-badge">BPP Thường</div><div class="wuwa-price">210k</div></a>
             </div>
+          </div>
+
+          <div style="margin-top:16px;padding:14px;background:rgba(255,215,0,0.03);border-radius:11px;border:1px solid rgba(255,215,0,0.12);">
+            <div style="color:var(--gold);font-weight:700;font-size:0.83rem;margin-bottom:12px;">🛒 Gói Shop</div>
+            <div style="display:flex;flex-direction:row;gap:10px;">
+              <div onclick="openImgModal('gia.png')" style="cursor:zoom-in;flex:1;border-radius:10px;overflow:hidden;border:1px solid rgba(255,215,0,0.15);transition:all 0.3s;position:relative;min-height:320px;" onmouseover="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 16px rgba(255,215,0,0.2)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.boxShadow='none'">
+                <img src="gia.png" alt="Bảng giá shop" style="width:100%;height:100%;display:block;object-fit:cover;">
+                <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.7);font-size:0.65rem;padding:3px 7px;border-radius:6px;pointer-events:none;">🔍 Xem to</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div style="margin-bottom:16px;padding:14px;background:rgba(255,215,0,0.03);border-radius:11px;border:1px solid rgba(255,215,0,0.12);">
+            <div style="color:var(--gold);font-weight:700;font-size:0.83rem;margin-bottom:12px;">🛒 Gói Nạp Khác</div>
+            <div onclick="openImgModal('giagay.png')" style="cursor:zoom-in;border-radius:10px;overflow:hidden;border:1px solid rgba(255,215,0,0.15);transition:all 0.3s;position:relative;" onmouseover="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 16px rgba(255,215,0,0.2)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.boxShadow='none'">
+              <img src="giagay.png" alt="Gói nạp khác" style="width:100%;display:block;object-fit:cover;">
+              <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.7);font-size:0.65rem;padding:3px 7px;border-radius:6px;pointer-events:none;">🔍 Xem to</div>
+            </div>
+          </div>
+          <div class="price-card-title">ℹ️ Thông Tin Nạp WuWa</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:0.88rem;color:rgba(224,240,255,0.75);">
+            <div style="padding:12px;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;">
+              <div style="color:var(--gold);font-weight:700;margin-bottom:6px;">🔑 Hình thức nạp</div>
+              <div>Nạp qua tài khoản LOGIN — bạn cung cấp thông tin đăng nhập, 3K nạp trực tiếp vào tài khoản.</div>
+            </div>
+            <div style="padding:12px;background:rgba(0,245,255,0.04);border:1px solid rgba(0,245,255,0.1);border-radius:10px;">
+              <div style="color:var(--cyan);font-weight:700;margin-bottom:6px;">✅ Ưu điểm</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+                <li>💰 Giá rẻ hơn nạp trực tiếp</li>
+                <li>🎁 x2 Lunite lần đầu nạp mỗi mức</li>
+                <li>⚡ Xử lý nhanh, hỗ trợ tận tình</li>
+                <li>📋 Cấp bill đầy đủ khi yêu cầu</li>
+              </ul>
+            </div>
+            <div style="padding:12px;background:rgba(255,45,120,0.04);border:1px solid rgba(255,45,120,0.12);border-radius:10px;">
+              <div style="color:var(--pink);font-weight:700;margin-bottom:6px;">📝 Lưu ý</div>
+              <div style="color:rgba(224,240,255,0.6);font-size:0.82rem;line-height:1.6;">x2 chỉ áp dụng lần đầu nạp tại mỗi mức giá · Thanh toán qua chuyển khoản ngân hàng.</div>
+            </div>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1));border:1px solid rgba(0,245,255,0.3);border-radius:12px;text-decoration:none;color:var(--cyan);font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.25),rgba(255,45,120,0.15))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1))'">
+              💬 Inbox Facebook để đặt nạp →
+            </a>
           </div>
         </div>
       </div>
@@ -651,146 +687,15 @@
       </div>
     </div>
 
-    <!-- ── Skin Nhân Vật ── -->
-    <div id="tab-skin" class="tab-content">
-      <div class="two-col">
-        <div class="gallery-card">
-          <div class="gallery-title">👗 Skin Nhân Vật</div>
-          <div style="color:rgba(224,240,255,0.4);font-size:0.8rem;margin-bottom:14px;">🖼️ Click skin để inbox đặt mua</div>
-          <div class="gallery-grid">
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:block;">
-              <div class="gallery-img-wrap"><img src="skin.png" alt="Skin 1"></div>
-            </a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:block;">
-              <div class="gallery-img-wrap"><img src="goi.png" alt="Skin 2"></div>
-            </a>
-          </div>
-        </div>
-        <div class="price-card">
-          <div class="price-card-title">💰 Bảng Giá Skin</div>
-          <div style="color:rgba(224,240,255,0.4);font-size:0.8rem;margin-bottom:14px;">✏️ Tự chỉnh sửa giá trong file HTML</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div class="price-item"><span class="price-item-name">jinhsi</span><span class="price-item-value">1130k</span></div>
-            <div class="price-item"><span class="price-item-name">Zani</span><span class="price-item-value">905k</span></div>
-            <div class="price-item"><span class="price-item-name">Carlotta</span><span class="price-item-value">900k</span></div>
-            <div class="price-item"><span class="price-item-name">Changli</span><span class="price-item-value">910k</span></div>
-            <div class="price-item"><span class="price-item-name">sanhua</span><span class="price-item-value">630k</span></div>
-          </div>
-          <div style="margin-top:14px;padding:12px;background:rgba(255,215,0,0.05);border-radius:10px;border:1px solid rgba(255,215,0,0.15);font-size:0.8rem;color:rgba(224,240,255,0.5);">
-            💬 Giá có thể thay đổi · Inbox để biết giá mới nhất
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- ── Chạy Map ── -->
     <div id="tab-map" class="tab-content">
-      <div class="map-cols">
-        <div class="price-card">
-          <div class="price-card-title">🌍 Chạy Map 1</div>
-          <div style="display:flex;flex-direction:column;gap:7px;">
-            <div class="price-item"><span class="price-item-name">Gorges Of Spirits</span><span class="price-item-value">40k</span></div>
-            <div class="price-item"><span class="price-item-name">Jinzhou</span><span class="price-item-value">35k</span></div>
-            <div class="price-item"><span class="price-item-name">Central Plains</span><span class="price-item-value">70k</span></div>
-            <div class="price-item"><span class="price-item-name">Desorock Highlands</span><span class="price-item-value">70k</span></div>
-            <div class="price-item"><span class="price-item-name">Port City Of Guixu</span><span class="price-item-value">70k</span></div>
-            <div class="price-item"><span class="price-item-name">Dim Forest</span><span class="price-item-value">70k</span></div>
-            <div class="price-item"><span class="price-item-name">Wumming Bay</span><span class="price-item-value">45k</span></div>
-            <div class="price-item"><span class="price-item-name">Norfall Barrens</span><span class="price-item-value">40k</span></div>
-            <div class="price-item"><span class="price-item-name">Whining Aix's Mire</span><span class="price-item-value">75k</span></div>
-            <div class="price-item"><span class="price-item-name">Tiger's Maw Mine</span><span class="price-item-value">45k</span></div>
-            <div class="price-item"><span class="price-item-name">MT. Firmament</span><span class="price-item-value">90k</span></div>
-            <div class="price-item"><span class="price-item-name">Black Shores</span><span class="price-item-value">40k</span></div>
-            <div class="price-item"><span class="price-item-name">Tethys Deep</span><span class="price-item-value">45k</span></div>
-            <div style="color:var(--cyan);font-size:0.72rem;font-weight:700;letter-spacing:0.15em;padding:10px 0 4px;">✦ Map 3.0</div>
-            <div class="price-item"><span class="price-item-name">Frostlands Transit Port</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Mount Gjallar</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Starblind Crashsite</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Upphaf Forest Ruins</span><span class="price-item-value">70k</span></div>
-            <div class="price-item"><span class="price-item-name">Tidelost Forest</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Etching Plains</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Startorch Academy</span><span class="price-item-value">15k</span></div>
-            <div class="price-item"><span class="price-item-name">Starward Riseway</span><span class="price-item-value">15k</span></div>
-            <div class="price-item"><span class="price-item-name">Fangspire Chasm</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Bjartr Woods</span><span class="price-item-value">40k</span></div>
-            <div class="price-item"><span class="price-item-name">Stagnant Run</span><span class="price-item-value">50k</span></div>
-            <div class="price-item"><span class="price-item-name">Rebirth Uplands</span><span class="price-item-value">50k</span></div>
-            <div class="price-item"><span class="price-item-name">Mawburrow Desert</span><span class="price-item-value">15k</span></div>
-            <div class="price-item"><span class="price-item-name">Giant's Gaze</span><span class="price-item-value">40k</span></div>
-          </div>
-        </div>
-        <div class="price-card">
-          <div class="price-card-title">🌊 Chạy Map 2</div>
-          <div style="display:flex;flex-direction:column;gap:7px;">
-            <div class="price-item"><span class="price-item-name">Ragunna City</span><span class="price-item-value">5k</span></div>
-            <div class="price-item"><span class="price-item-name">Averado Vault</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Penitent's End</span><span class="price-item-value">50k</span></div>
-            <div class="price-item"><span class="price-item-name">Hallowed Reach</span><span class="price-item-value">45k</span></div>
-            <div class="price-item"><span class="price-item-name">Whisperwind Haven</span><span class="price-item-value">50k</span></div>
-            <div class="price-item"><span class="price-item-name">Nimbus Sanctum</span><span class="price-item-value">60k</span></div>
-            <div class="price-item"><span class="price-item-name">Fagaceae Penisula</span><span class="price-item-value">50k</span></div>
-            <div class="price-item"><span class="price-item-name">Thessaleo Fells</span><span class="price-item-value">50k</span></div>
-            <div class="price-item"><span class="price-item-name">Riccioli Islands</span><span class="price-item-value">50k</span></div>
-            <div class="price-item"><span class="price-item-name">Vault Underground</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Avinoleum</span><span class="price-item-value">70k</span></div>
-            <div class="price-item"><span class="price-item-name">Beohr Waters</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Septimont</span><span class="price-item-value">55k</span></div>
-            <div class="price-item"><span class="price-item-name">Fabricatorium of Deep</span><span class="price-item-value">40k</span></div>
-            <div class="price-item"><span class="price-item-name">Sanguis Plateaus</span><span class="price-item-value">50k</span></div>
-          </div>
-          <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
-            <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">⭐ Daily đi kèm</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div class="price-item"><span class="price-item-name">1 ngày</span><span class="price-item-value">5k</span></div>
-              <div class="price-item"><span class="price-item-name">1 tuần</span><span class="price-item-value">25k</span></div>
-              <div class="price-item"><span class="price-item-name">1 tháng</span><span class="price-item-value">90k</span></div>
-            </div>
-          </div>
-        </div>
+      <div onclick="openImgModal('caythue.png')" style="cursor:zoom-in;border-radius:12px;overflow:hidden;border:1px solid rgba(0,245,255,0.2);transition:all 0.3s;position:relative;max-width:900px;margin:0 auto;" onmouseover="this.style.borderColor='var(--cyan)';this.style.boxShadow='0 0 20px rgba(0,245,255,0.2)'" onmouseout="this.style.borderColor='rgba(0,245,255,0.2)';this.style.boxShadow='none'">
+        <img src="caythue.png" alt="Bảng giá chạy map" style="width:100%;display:block;object-fit:cover;">
+        <div style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,0.6);color:rgba(255,255,255,0.8);font-size:0.7rem;padding:4px 9px;border-radius:6px;pointer-events:none;">🔍 Xem to</div>
       </div>
     </div>
 
-    <!-- ── Extra ── -->
-    <div id="tab-extra" class="tab-content">
-      <div class="price-card">
-        <div class="price-card-title">✨ Dịch Vụ Bổ Sung</div>
-        <div class="extra-grid">
-          <div class="extra-card">
-            <div class="extra-cat">📅 Daily</div>
-            <ul class="extra-list">
-              <li><span>1 ngày</span><span>5k</span></li>
-              <li><span>1 tuần</span><span>25k</span></li>
-              <li><span>1 tháng</span><span>90k</span></li>
-            </ul>
-          </div>
-          <div class="extra-card">
-            <div class="extra-cat">📜 Quest</div>
-            <ul class="extra-list">
-              <li><span>Main quest</span><span>25k/1</span></li>
-              <li><span>Companion</span><span>25k/1</span></li>
-              <li><span>Exploration</span><span>25k/1</span></li>
-              <li><span>Side quest</span><span>5k/1</span></li>
-            </ul>
-          </div>
-          <div class="extra-card">
-            <div class="extra-cat">🎲 Roll / Gacha</div>
-            <ul class="extra-list">
-              <li><span>Roll đơn</span><span>5-6k/1</span></li>
-              <li><span>Roll x10</span><span>50-60k</span></li>
-              <li><span>Nhặt Sonance casket</span><span>IB</span></li>
-            </ul>
-          </div>
-          <div class="extra-card">
-            <div class="extra-cat">💬 Liên hệ</div>
-            <ul class="extra-list">
-              <li><span>Facebook</span><span style="color:var(--cyan);">Inbox</span></li>
-              <li><span>Discord</span><span style="color:var(--cyan);">Server</span></li>
-              <li><span>Tư vấn</span><span style="color:var(--cyan);">Miễn phí</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </section>
 </div>
@@ -859,6 +764,7 @@ function toggleVidMute() {
   v.muted = !v.muted;
   btn.textContent = v.muted ? '🔇' : '🔊';
 }
+
 
 
 // Stars
@@ -948,6 +854,27 @@ document.addEventListener('keydown', e => {
     if (e.key === '0') qrReset();
   }
 });
+</script>
+<!-- Lightbox Modal -->
+<div id="imgModal" onclick="closeImgModal(event)" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column;padding:20px;gap:16px;cursor:default;">
+  <button onclick="document.getElementById('imgModal').style.display='none'" style="position:absolute;top:16px;right:20px;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.4);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">✕</button>
+  <img id="imgModalSrc" src="" alt="" style="max-width:95vw;max-height:75vh;border-radius:12px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,0.6);">
+  <a id="imgModalBtn" href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:linear-gradient(135deg,#1877f2,#0d5fc2);color:#fff;font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;border-radius:12px;text-decoration:none;letter-spacing:0.04em;box-shadow:0 4px 20px rgba(24,119,242,0.4);transition:all 0.25s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 28px rgba(24,119,242,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(24,119,242,0.4)'">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    Nạp ngay qua Facebook 3K
+  </a>
+</div>
+<script>
+function openImgModal(src) {
+  const m = document.getElementById('imgModal');
+  document.getElementById('imgModalSrc').src = src;
+  m.style.display = 'flex';
+}
+function closeImgModal(e) {
+  if (e.target === document.getElementById('imgModal')) {
+    document.getElementById('imgModal').style.display = 'none';
+  }
+}
 </script>
 </body>
 </html>
