@@ -486,6 +486,8 @@
       <button class="tab-btn active" onclick="switchTab('wuwa',this)"><img src="wuwa.jpg" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Wuthering Waves</button>
       <button class="tab-btn" onclick="switchTab('genshin',this)"><img src="ghenshin.jpg" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Genshin Impact</button>
       <button class="tab-btn" onclick="switchTab('hsr',this)"><img src="honkai.png" style="width:20px;height:20px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:6px;"> Nạp Honkai: Star Rail</button>
+      <button class="tab-btn" onclick="switchTab('zzz',this)">📺 Nạp Zenless Zone Zero</button>
+      <button class="tab-btn" onclick="switchTab('pgr',this)">⚔️ Nạp PGR</button>
       <button class="tab-btn" onclick="switchTab('map',this)">🗺️ Chạy Map Sự Kiện</button>
     </div>
 
@@ -576,26 +578,13 @@
             <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
           </a>
           <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 Nạp qua tài khoản LOGIN · Thanh toán qua chuyển khoản</div>
-          <div class="wuwa-grid">
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">60 Đá Sáng Thế</div><div class="wuwa-price">22k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">300 + 30 Đá</div><div class="wuwa-price">85k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">980 + 110 Đá</div><div class="wuwa-price">250k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item"><div class="wuwa-badge">1980 + 260 Đá</div><div class="wuwa-price">495k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">3280 + 600 Đá</div><div class="wuwa-price">820k</div></a>
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured"><div class="wuwa-badge">6480 + 1600 Đá</div><div class="wuwa-price">1690k</div></a>
-          </div>
-          <div style="margin-top:12px;">
-            <a href="https://www.facebook.com/athoang.663155/" target="_blank" class="wuwa-item featured" style="display:block;text-align:center;border-radius:12px;padding:14px 10px;">
-              <div class="wuwa-badge">Full Gói Đá Sáng Thế</div>
-              <div class="wuwa-price">3400k</div>
-            </a>
-          </div>
-          <div style="margin-top:16px;padding:14px;background:rgba(0,245,255,0.04);border-radius:11px;border:1px solid rgba(0,245,255,0.1);">
-            <div style="color:var(--cyan);font-weight:700;font-size:0.83rem;margin-bottom:10px;">📦 Gói đặc biệt</div>
-            <div style="display:flex;flex-direction:column;gap:7px;">
-              <div class="price-item"><span class="price-item-name">Không Nguyệt Chúc Phúc (Welkin)</span><span class="price-item-value">85k</span></div>
-              <div class="price-item"><span class="price-item-name">Nhật Ký Hành Trình (BP Thường)</span><span class="price-item-value">190k</span></div>
-              <div class="price-item"><span class="price-item-name">Bài Ca Trân Châu (BP Nâng Cao)</span><span class="price-item-value">375k</span></div>
+          <div style="margin-top:16px;padding:14px;background:rgba(255,215,0,0.03);border-radius:11px;border:1px solid rgba(255,215,0,0.12);">
+            <div style="color:var(--gold);font-weight:700;font-size:0.83rem;margin-bottom:12px;">🛒 Bảng Giá Genshin Impact</div>
+            <div style="display:flex;flex-direction:row;gap:10px;">
+              <div onclick="openImgModal('genshin_price.jpg')" style="cursor:zoom-in;flex:1;border-radius:10px;overflow:hidden;border:1px solid rgba(255,215,0,0.15);transition:all 0.3s;position:relative;min-height:200px;" onmouseover="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 16px rgba(255,215,0,0.2)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.boxShadow='none'">
+                <img src="genshin_price.jpg" alt="Bảng giá Genshin" style="width:100%;height:100%;display:block;object-fit:cover;">
+                <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.7);font-size:0.65rem;padding:3px 7px;border-radius:6px;pointer-events:none;">🔍 Xem to</div>
+              </div>
             </div>
           </div>
         </div>
@@ -678,6 +667,96 @@
             <div style="padding:12px;background:rgba(255,45,120,0.04);border:1px solid rgba(255,45,120,0.12);border-radius:10px;">
               <div style="color:var(--pink);font-weight:700;margin-bottom:6px;">📝 Lưu ý</div>
               <div style="color:rgba(224,240,255,0.6);font-size:0.82rem;line-height:1.6;">Chỉ làm phiền khách iu đoạn lấy code (6 số gửi về mail) khi sốp liên lạc. Nhớ liên kết tài khoản sang Hoyoverse nhé. Đọc kỹ phần mô tả phía dưới nha~</div>
+            </div>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1));border:1px solid rgba(0,245,255,0.3);border-radius:12px;text-decoration:none;color:var(--cyan);font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.25),rgba(255,45,120,0.15))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1))'">
+              💬 Inbox Facebook để đặt nạp →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── Nạp ZZZ ── -->
+    <div id="tab-zzz" class="tab-content">
+      <div class="two-col">
+        <div class="price-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:10px 14px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:700;color:#ffffff;letter-spacing:0.02em;">Zenless Zone Zero <span style="color:rgba(255,255,255,0.5);font-weight:600;">(LOGIN)</span></span>
+          </div>
+          <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.35);border-radius:10px;text-decoration:none;margin-bottom:14px;transition:all 0.3s;" onmouseover="this.style.background='rgba(24,119,242,0.2)'" onmouseout="this.style.background='rgba(24,119,242,0.1)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
+          </a>
+          <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 Nạp qua tài khoản LOGIN · Thanh toán qua chuyển khoản</div>
+          <div style="margin-top:16px;padding:14px;background:rgba(255,215,0,0.03);border-radius:11px;border:1px solid rgba(255,215,0,0.12);">
+            <div style="color:var(--gold);font-weight:700;font-size:0.83rem;margin-bottom:12px;">🛒 Bảng Giá Zenless Zone Zero</div>
+            <div style="display:flex;flex-direction:row;gap:10px;">
+              <div onclick="openImgModal('zzz.png')" style="cursor:zoom-in;flex:1;border-radius:10px;overflow:hidden;border:1px solid rgba(255,215,0,0.15);transition:all 0.3s;position:relative;min-height:200px;" onmouseover="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 16px rgba(255,215,0,0.2)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.boxShadow='none'">
+                <img src="zzz.png" alt="Bảng giá ZZZ" style="width:100%;height:100%;display:block;object-fit:cover;">
+                <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.7);font-size:0.65rem;padding:3px 7px;border-radius:6px;pointer-events:none;">🔍 Xem to</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-card-title">ℹ️ Thông Tin Nạp ZZZ</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:0.88rem;color:rgba(224,240,255,0.75);">
+            <div style="padding:12px;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;">
+              <div style="color:var(--gold);font-weight:700;margin-bottom:6px;">🔑 Hình thức nạp</div>
+              <div>Nạp qua tài khoản LOGIN — bạn cung cấp thông tin đăng nhập, 3K nạp trực tiếp vào tài khoản.</div>
+            </div>
+            <div style="padding:12px;background:rgba(0,245,255,0.04);border:1px solid rgba(0,245,255,0.1);border-radius:10px;">
+              <div style="color:var(--cyan);font-weight:700;margin-bottom:6px;">✅ Ưu điểm</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+                <li>💰 Giá rẻ, an toàn, có thể cấp bill</li>
+                <li>🎁 Gói nạp nhận x2 bonus giống Cửa Hàng</li>
+                <li>⚡ Xử lý nhanh, hỗ trợ tận tình</li>
+              </ul>
+            </div>
+            <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1));border:1px solid rgba(0,245,255,0.3);border-radius:12px;text-decoration:none;color:var(--cyan);font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.25),rgba(255,45,120,0.15))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1))'">
+              💬 Inbox Facebook để đặt nạp →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Nạp PGR ── -->
+    <div id="tab-pgr" class="tab-content">
+      <div class="two-col">
+        <div class="price-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:10px 14px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:700;color:#ffffff;letter-spacing:0.02em;">Punishing: Gray Raven <span style="color:rgba(255,255,255,0.5);font-weight:600;">(LOGIN)</span></span>
+          </div>
+          <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.35);border-radius:10px;text-decoration:none;margin-bottom:14px;transition:all 0.3s;" onmouseover="this.style.background='rgba(24,119,242,0.2)'" onmouseout="this.style.background='rgba(24,119,242,0.1)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span style="font-size:0.85rem;color:rgba(224,240,255,0.85);flex:1;">👆 Ấn vào gói bất kỳ hoặc <strong style="color:#4fa3f7;">bấm vào đây</strong> để nhắn Facebook 3K đặt nạp!</span>
+          </a>
+          <div style="color:rgba(224,240,255,0.38);font-size:0.78rem;margin-bottom:14px;">💡 Nạp qua tài khoản LOGIN · Thanh toán qua chuyển khoản</div>
+          <div style="margin-top:16px;padding:14px;background:rgba(255,215,0,0.03);border-radius:11px;border:1px solid rgba(255,215,0,0.12);">
+            <div style="color:var(--gold);font-weight:700;font-size:0.83rem;margin-bottom:12px;">🛒 Bảng Giá PGR</div>
+            <div style="display:flex;flex-direction:row;gap:10px;">
+              <div onclick="openImgModal('pgr.png')" style="cursor:zoom-in;flex:1;border-radius:10px;overflow:hidden;border:1px solid rgba(255,215,0,0.15);transition:all 0.3s;position:relative;min-height:200px;" onmouseover="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 16px rgba(255,215,0,0.2)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.boxShadow='none'">
+                <img src="pgr.png" alt="Bảng giá PGR" style="width:100%;height:100%;display:block;object-fit:cover;">
+                <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.7);font-size:0.65rem;padding:3px 7px;border-radius:6px;pointer-events:none;">🔍 Xem to</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-card-title">ℹ️ Thông Tin Nạp PGR</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:0.88rem;color:rgba(224,240,255,0.75);">
+            <div style="padding:12px;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;">
+              <div style="color:var(--gold);font-weight:700;margin-bottom:6px;">🔑 Hình thức nạp</div>
+              <div>Nạp qua tài khoản LOGIN — bạn cung cấp thông tin đăng nhập, 3K nạp trực tiếp vào tài khoản.</div>
+            </div>
+            <div style="padding:12px;background:rgba(0,245,255,0.04);border:1px solid rgba(0,245,255,0.1);border-radius:10px;">
+              <div style="color:var(--cyan);font-weight:700;margin-bottom:6px;">✅ Ưu điểm</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+                <li>💰 Giá rẻ, an toàn, có thể cấp bill</li>
+                <li>⚡ Xử lý nhanh, hỗ trợ tận tình</li>
+              </ul>
             </div>
             <a href="https://www.facebook.com/athoang.663155/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1));border:1px solid rgba(0,245,255,0.3);border-radius:12px;text-decoration:none;color:var(--cyan);font-weight:700;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.25),rgba(255,45,120,0.15))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(0,245,255,0.15),rgba(255,45,120,0.1))'">
               💬 Inbox Facebook để đặt nạp →
